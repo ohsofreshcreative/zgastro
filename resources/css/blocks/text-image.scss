@@ -1,0 +1,118 @@
+.text-image {
+  h4:not(:first-of-type) {
+    margin-top: 32px; /* Adjust the margin value as needed */
+  }
+  h5 {
+    margin-top: 32px;
+  }
+  h6 {
+    font-size: 18px !important;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+  .__content {
+    p {
+      padding-bottom: 8px;
+    }
+    p:last-child {
+      padding-bottom: 0px;
+    }
+  }
+  b,
+  strong {
+    margin-top: 24px;
+  }
+  ul {
+    margin-top: 8px;
+    li {
+      position: relative;
+      padding-left: 1em;
+      border-bottom: 1px solid var(--border-light);
+      width: fit-content;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+    }
+    li:last-child {
+      border-bottom: 0;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+    li:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 7px;
+      height: 12px;
+      background-image: url('http://raab.local/wp-content/uploads/2025/06/check.svg');
+      background-size: cover;
+    }
+  }
+}
+
+/*--- ISO ---*/
+
+.iso {
+  img.__bg--first {
+    left: 50%;
+    top: -60px;
+  }
+  img.__bg--second {
+    left: 0%;
+    bottom: 0px;
+    mix-blend-mode: soft-light;
+    opacity: 0.5;
+  }
+}
+
+/*---- LG --*/
+@media only screen and (max-width: 1024px) {
+  .iso {
+    & img.__bg--first {
+      top: auto;
+      left: auto;
+      right: -2%;
+      bottom: 50%;
+      width: 160px;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .iso {
+    & img.__bg--first {
+      bottom: 33%;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .iso {
+    & img.__bg--first {
+      bottom: -2%;
+    }
+  }
+}
+
+/*--- OFFER ABOUT ---*/
+
+.offer-about {
+  .__img img {
+    width: 70%;
+    margin-left: auto;
+  }
+  h2 {
+    font-size: 36px !important;
+    line-height: 3rem;
+  }
+}
+
+/*---- LG --*/
+@media only screen and (max-width: 1024px) {
+  .offer-about {
+    .__img img {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}

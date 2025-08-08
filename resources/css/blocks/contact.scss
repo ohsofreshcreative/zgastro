@@ -1,0 +1,49 @@
+.contact {
+  .__data {
+	font-size:18px;
+    margin-left: 42px;
+  }
+  .__phone {
+    display: flex;
+  }
+
+  .__phone::before {
+    content: url('http://raab.local/wp-content/uploads/2025/06/phone-1.svg');
+    margin-right: 16px;
+    position: relative;
+    top: 4px;
+  }
+
+  .__mail {
+    display: flex;
+  }
+
+  .__mail::before {
+    content: url('http://raab.local/wp-content/uploads/2025/06/mail-1.svg');
+    margin-right: 16px;
+    position: relative;
+    top: 4px;
+  }
+
+  .__address {
+    display: flex;
+  }
+
+  .__address::before {
+    content: url('http://raab.local/wp-content/uploads/2025/06/place.svg');
+    margin-right: 16px;
+    position: relative;
+    top: 4px;
+  }
+
+  .__info {
+    display: flex;
+  }
+
+  .__info::before {
+    content: url('http://raab.local/wp-content/uploads/2025/06/doc.svg');
+    margin-right: 16px;
+    position: relative;
+    top: 4px;
+  }
+}
