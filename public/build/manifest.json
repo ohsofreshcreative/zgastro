@@ -4,21 +4,27 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BE1cftQ7.css",
+    "file": "assets/app-mViiE5oX.css",
     "src": "resources/css/app.css",
-    "isEntry": true
+    "isEntry": true,
+    "names": [
+      "app.css"
+    ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-CFKeBz4M.css",
+    "file": "assets/editor-CwheI6Pm.css",
     "src": "resources/css/editor.css",
-    "isEntry": true
+    "isEntry": true,
+    "names": [
+      "editor.css"
+    ]
   },
   "resources/images/ohsofresh.svg": {
     "file": "assets/ohsofresh-DBDLJZzV.svg",
     "src": "resources/images/ohsofresh.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-uVszNpFX.js",
+    "file": "assets/app-D8vaVHmd.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
