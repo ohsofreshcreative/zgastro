@@ -58,6 +58,12 @@ class Hero extends Block
 
 			->addTab('Ustawienia bloku', ['placement' => 'top']) 
 
+			->addText('id', [
+				'label' => 'ID',
+			])
+			->addText('class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -84,6 +90,8 @@ class Hero extends Block
 	{
 		return [
 			'hero' => get_field('hero'),
+			'id' => get_field('id'),
+			'class' => get_field('class'),
 			'flip' => get_field('flip'),
 			'gfx_top' => get_field('gfx_top'),
 			'gfx_bottom' => get_field('gfx_bottom'),

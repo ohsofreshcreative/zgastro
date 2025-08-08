@@ -89,47 +89,50 @@ body {
 /*--- !ROOT ---*/
 
 :root {
-  --body: #1b1b1b !important;
-  --primary: #e30613;
-  --p-hover: #bd0510;
-  --p-100: #f9cdd0;
-  --p-200: #f6acb0;
-  --p-300: #f18289;
-  --p-400: #ec5962;
-  --p-500: #e8303a;
-  --p-600: #bd0510;
-  --p-700: #97040d;
-  --p-800: #72030a;
-  --p-900: #4c0206;
-  --p-dark: #2d0104;
+  --body: #211c14 !important;
+  --primary: #b59a6c;
+  --p-hover: #97805a;
+  --p-100: #f0ebe1;
+  --p-200: #e6ddce;
+  --p-300: #daccb5;
+  --p-400: #cebc9d;
+  --p-500: #c1ab84;
+  --p-600: #97805a;
+  --p-700: #796748;
+  --p-800: #5a4d36;
+  --p-900: #3c3324;
+  --p-dark: #241f16;
 
-  --secondary: #1d1d1b;
-  --s-hover: #12141a;
-  --s-100: #d0d1d2;
-  --s-200: #b1b2b4;
-  --s-300: #8a8b8f;
-  --s-400: #63656a;
-  --s-500: #3c3f44;
-  --s-600: #12141a;
-  --s-700: #0e1015;
-  --s-800: #0b0c10;
-  --s-900: #07080a;
-  --s-dark: #040506;
+  --secondary: #f2ce90;
+  --s-hover: #caac78;
+  --s-100: #fcf5e9;
+  --s-200: #fbefda;
+  --s-300: #f8e6c7;
+  --s-400: #f6deb5;
+  --s-500: #f4d6a2;
+  --s-600: #caac78;
+  --s-700: #a18960;
+  --s-800: #796748;
+  --s-900: #514530;
+  --s-dark: #30291d;
 
   --gray: #63656a;
-  --bg: #fafafa;
-  --bg-light: #f2f2f2;
-  --bg-lighter: #fff3f3;
+  --bg: #fffefc;
+  --bg-light: #ffffff;
+  --bg-lighter: #fffefc;
 
-  --border: var(--p-300);
-  --border-light: var(--p-200);
+  --border-p: var(--p-300);
+  --border-p-light: var(--p-100);
 
-  --header: 'franklin-gothic-atf', sans-serif;
-  --txt: 'franklin-gothic-atf', sans-serif;
-  --btns-font: 'franklin-gothic-atf', sans-serif;
+  --border-s: var(--s-300);
+  --border-s-light: var(--s-200);
 
-  --smt: 104px;
-  --spt: 104px;
+  --header: 'Albert Sans', sans-serif;
+  --txt: 'Albert Sans', sans-serif;
+  --btns-font: 'Albert Sans', sans-serif;
+
+  --smt: 120px;
+  --spt: 120px;
   --menu-height: 102px !important;
 
   --img-xs: 240px;
@@ -146,9 +149,9 @@ body {
   --m-img: 40px;
   --radius: 32px;
 
-  --btns-fontsize: 14px;
-  --btns-radius: 4px;
-  --btns-padding: 16px 40px;
+  --btns-fontsize: 16px;
+  --btns-radius: 104px;
+  --btns-padding: 24px 48px;
 
   --footer-py: 104px 0;
 
@@ -529,6 +532,67 @@ h6,
   cursor: pointer;
 }
 
+.arrow-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #FFF;
+  border-radius: 9999px; /* rounded-full */
+  padding: 8px 8px 8px 24px;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--body);
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.arrow-btn::after {
+  content: '';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 16px;
+  background-color: var(--primary); /* kółko */
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='13' viewBox='0 0 14 13' fill='none'%3E%3Cpath d='M6.75 1.96191C6.48324 1.70752 6.48316 1.2924 6.75 1.03809C7.01295 0.78782 7.43619 0.787598 7.69922 1.03809L12.9492 6.03809C13.0818 6.16434 13.1504 6.33154 13.1504 6.5C13.1504 6.66846 13.0818 6.83566 12.9492 6.96191L7.69922 11.9619C7.43615 12.2123 7.01293 12.2125 6.75 11.9619C6.48341 11.7076 6.48312 11.2925 6.75 11.0381L11.5146 6.5L6.75 1.96191ZM1.05078 1.96191C0.783455 1.70748 0.783813 1.2925 1.05078 1.03809C1.31376 0.787614 1.73699 0.787603 2 1.03809L7.25 6.03809C7.38237 6.16431 7.45019 6.33166 7.4502 6.5C7.4502 6.66834 7.38237 6.83569 7.25 6.96191L2 11.9619C1.73701 12.2125 1.31379 12.2122 1.05078 11.9619C0.783503 11.7075 0.783589 11.2926 1.05078 11.0381L5.81543 6.5L1.05078 1.96191Z' fill='white' stroke='white' stroke-width='0.3'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+}
+
+.arrow-btn:hover {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--primary);
+  border-radius: 9999px; /* rounded-full */
+  padding: 8px 8px 8px 24px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #FFF;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.arrow-btn:hover::after {
+  content: '';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 16px;
+  background-color: #FFF; /* kółko */
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='13' viewBox='0 0 14 13' fill='none'%3E%3Cpath d='M6.75 1.96191C6.48324 1.70752 6.48316 1.2924 6.75 1.03809C7.01295 0.78782 7.43619 0.787598 7.69922 1.03809L12.9492 6.03809C13.0818 6.16434 13.1504 6.33154 13.1504 6.5C13.1504 6.66846 13.0818 6.83566 12.9492 6.96191L7.69922 11.9619C7.43615 12.2123 7.01293 12.2125 6.75 11.9619C6.48341 11.7076 6.48312 11.2925 6.75 11.0381L11.5146 6.5L6.75 1.96191ZM1.05078 1.96191C0.783455 1.70748 0.783813 1.2925 1.05078 1.03809C1.31376 0.787614 1.73699 0.787603 2 1.03809L7.25 6.03809C7.38237 6.16431 7.45019 6.33166 7.4502 6.5C7.4502 6.66834 7.38237 6.83569 7.25 6.96191L2 11.9619C1.73701 12.2125 1.31379 12.2122 1.05078 11.9619C0.783503 11.7075 0.783589 11.2926 1.05078 11.0381L5.81543 6.5L1.05078 1.96191Z' fill='%23b59a6c' stroke='%23b59a6c' stroke-width='0.3'/%3E%3C/svg%3E");
+
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+}
+
 .main-btn {
   font-family: var(--btns-font);
   font-size: var(--btns-fontsize);
@@ -665,7 +729,7 @@ h6,
 }
 
 .underline-btn::after {
-  content: url('http://raab.local/wp-content/uploads/2025/06/btn-arrow.svg');
+  content: url('http://kreacja.local/wp-content/uploads/2025/06/btn-arrow.svg');
   height: 10px;
   width: 10px;
   margin-left: 8px;
@@ -677,7 +741,7 @@ h6,
 }
 
 .underline-btn:hover::after {
-  content: url('http://shadowcontrol.local/wp-content/uploads/2025/05/arrow-right.svg');
+  content: url('http://kreacja.local/wp-content/uploads/2025/05/arrow-right.svg');
   height: 10px;
   width: 10px;
   margin-left: 16px;
@@ -812,7 +876,7 @@ h6,
       top: 50%;
       width: 15px;
       height: 14px;
-      background-image: url('http://shadowcontrol.local/wp-content/uploads/2025/05/check.svg');
+      background-image: url('http://kreacja.local/wp-content/uploads/2025/05/check.svg');
       background-size: cover;
       transform: translateY(-50%);
     }
@@ -915,7 +979,7 @@ h6,
     display: flex;
     flex-direction: column;
     height: 100%;
-	justify-content: space-between;
+    justify-content: space-between;
 
     .__rectangle {
       content: '';
@@ -1136,14 +1200,14 @@ input[type='checkbox'] {
     display: block;
   }
   .__phone::before {
-    content: url('http://shadowcontrol.local/wp-content/uploads/2025/06/phone.svg');
+    content: url('http://kreacja.local/wp-content/uploads/2025/06/phone.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
   }
 
   .__mail::before {
-    content: url('http://shadowcontrol.local/wp-content/uploads/2025/06/mail.svg');
+    content: url('http://kreacja.local/wp-content/uploads/2025/06/mail.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -1289,14 +1353,14 @@ input[type='checkbox'] {
   }
 
   .__phone::before {
-    content: url('http://raab.local/wp-content/uploads/2025/06/phone.svg');
+    content: url('http://kreacja.local/wp-content/uploads/2025/06/phone.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
   }
 
   .__mail::before {
-    content: url('http://raab.local/wp-content/uploads/2025/06/mail.svg');
+    content: url('http://kreacja.local/wp-content/uploads/2025/06/mail.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -1357,7 +1421,7 @@ input[type='checkbox'] {
     max-height: 500px; /* Ustaw odpowiednią wartość */
   }
   .widget-title::after {
-    content: url('http://raab.local/wp-content/uploads/2025/07/arrow-down.svg');
+    content: url('http://kreacja.local/wp-content/uploads/2025/07/arrow-down.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
@@ -1367,7 +1431,7 @@ input[type='checkbox'] {
   }
 
   .footer_widget.open .widget-title::after {
-    content: url('http://raab.local/wp-content/uploads/2025/07/arrow-down.svg');
+    content: url('http://kreacja.local/wp-content/uploads/2025/07/arrow-down.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
