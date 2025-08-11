@@ -65,6 +65,7 @@ add_filter('theme_file_path', function ($path, $file) {
 add_action('after_setup_theme', function () {
 
 	// Dodaj wsparcie dla WooCommerce
+	add_theme_support('woocommerce');
     add_theme_support('wc-product-gallery-zoom');
     add_theme_support('wc-product-gallery-lightbox');
     add_theme_support('wc-product-gallery-slider');

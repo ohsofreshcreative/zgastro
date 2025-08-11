@@ -118,7 +118,7 @@ body {
   --s-900: #514530;
   --s-dark: #30291d;
 
-  --gray: #8A8B8F;
+  --gray: #8a8b8f;
   --bg: #fffefc;
   --bg-light: #ffffff;
   --bg-lighter: #fffefc;
@@ -369,7 +369,8 @@ h6 {
   font-weight: 500;
 }
 
-h1.big, h2.big {
+h1.big,
+h2.big {
   font-size: 96px !important;
   font-weight: 400;
   line-height: normal !important;
@@ -538,7 +539,7 @@ h6,
 .arrow-btn {
   display: inline-flex;
   align-items: center;
-  background: #FFF;
+  background: #fff;
   border-radius: 9999px; /* rounded-full */
   padding: 8px 8px 8px 24px;
   font-weight: 500;
@@ -573,7 +574,7 @@ h6,
   padding: 8px 8px 8px 24px;
   font-weight: 500;
   font-size: 16px;
-  color: #FFF;
+  color: #fff;
   text-decoration: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -586,10 +587,9 @@ h6,
   width: 40px;
   height: 40px;
   margin-left: 16px;
-  background-color: #FFF; /* kółko */
+  background-color: #fff; /* kółko */
   border-radius: 50%;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='13' viewBox='0 0 14 13' fill='none'%3E%3Cpath d='M6.75 1.96191C6.48324 1.70752 6.48316 1.2924 6.75 1.03809C7.01295 0.78782 7.43619 0.787598 7.69922 1.03809L12.9492 6.03809C13.0818 6.16434 13.1504 6.33154 13.1504 6.5C13.1504 6.66846 13.0818 6.83566 12.9492 6.96191L7.69922 11.9619C7.43615 12.2123 7.01293 12.2125 6.75 11.9619C6.48341 11.7076 6.48312 11.2925 6.75 11.0381L11.5146 6.5L6.75 1.96191ZM1.05078 1.96191C0.783455 1.70748 0.783813 1.2925 1.05078 1.03809C1.31376 0.787614 1.73699 0.787603 2 1.03809L7.25 6.03809C7.38237 6.16431 7.45019 6.33166 7.4502 6.5C7.4502 6.66834 7.38237 6.83569 7.25 6.96191L2 11.9619C1.73701 12.2125 1.31379 12.2122 1.05078 11.9619C0.783503 11.7075 0.783589 11.2926 1.05078 11.0381L5.81543 6.5L1.05078 1.96191Z' fill='%23b59a6c' stroke='%23b59a6c' stroke-width='0.3'/%3E%3C/svg%3E");
-
 
   background-repeat: no-repeat;
   background-position: center;
@@ -731,25 +731,25 @@ h6,
   width: max-content;
 }
 
-.underline-btn::after {
+/* .underline-btn::after {
   content: url('http://kreacja.local/wp-content/uploads/2025/06/btn-arrow.svg');
   height: 10px;
   width: 10px;
   margin-left: 8px;
   transition: all 0.2s ease-out;
 }
-
+ */
 .underline-btn:hover {
   transition: all 0.2s ease-out;
 }
 
-.underline-btn:hover::after {
+/* .underline-btn:hover::after {
   content: url('http://kreacja.local/wp-content/uploads/2025/05/arrow-right.svg');
   height: 10px;
   width: 10px;
   margin-left: 16px;
   transition: all 0.2s ease-out;
-}
+} */
 
 .menu-btn {
   font-family: var(--btns-font);
@@ -780,6 +780,40 @@ h6,
 
 .inline-buttons .left-btn {
   margin-right: 16px;
+}
+
+/*--- SWIPER ---*/
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: var(--p-200);
+  border:1px solid var(--p-dark);
+  padding: 24px 24px;
+  border-radius: 100px;
+  transition: all 0.5s;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: var(--p-400);
+  transition: all 0.5s;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color:var(--p-dark);
+  font-weight: 600;
+  font-size: 14px !important;
+}
+
+.swiper-button-prev::after {
+	position: relative;
+	left:-2px;
+}
+
+.swiper-button-next::after {
+	position: relative;
+	left:1px;
 }
 
 /*--- !MENU  ---*/
@@ -1051,6 +1085,8 @@ h6,
   .swiper-button-next:after,
   .swiper-button-prev:after {
     content: '';
+    border: 1px solid red;
+    background: red;
   }
 }
 
@@ -1384,17 +1420,17 @@ input[type='checkbox'] {
       display: none;
     }
 
-	ul li {
-		margin-bottom:16px;
-	}
+    ul li {
+      margin-bottom: 16px;
+    }
 
-	a {
-		color:rgba(255,255,255,0.6) !important;
-	}
+    a {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
 
-	a:hover {
-		color:rgba(255,255,255,1) !important;
-	}
+    a:hover {
+      color: rgba(255, 255, 255, 1) !important;
+    }
 
     @media (max-width: 1024px) {
       grid-template-columns: 1fr 1fr;

@@ -70,15 +70,3 @@
 		</div>
 	</div>
 </section>
-
-{{-- === OSTATECZNY, POPRAWNY CSS === --}}
-<style>
-/* 
- * Poprawka dla prawej strzałki.
- * Pozycjonujemy ją `2rem` od prawej krawędzi "przycinacza",
- * co w praktyce oznacza `2rem` od prawej krawędzi ekranu.
-*/
-.recent .slider-clipper .swiper-button-next {
-    right: 2rem;
-}
-</style>

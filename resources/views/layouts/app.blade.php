@@ -27,7 +27,7 @@
 
 		@include('sections.header')
 
-		<main id="main" class="main -menu-mt">
+		<main id="main" class="main @if (is_woocommerce() || is_cart() || is_checkout() || is_account_page()) c-main -smt @endif">
 			@yield('content')
 		</main>
 
@@ -39,11 +39,11 @@
 
 		@include('sections.footer')
 	</div>
- @include('partials.mini-cart')
+	@include('partials.mini-cart')
 	@php(do_action('get_footer'))
 	@php(wp_footer())
 
-	
+
 </body>
 
 </html>
