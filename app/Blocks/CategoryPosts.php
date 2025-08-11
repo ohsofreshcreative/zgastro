@@ -8,7 +8,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 class CategoryPosts extends Block
 {
     public $name = 'Posty z kategorii';
-    public $description = 'Wyświetla posty z wybranej kategorii';
+    public $description = 'category-posts';
     public $slug = 'category-posts';
     public $category = 'formatting';
     public $icon = 'admin-post';
@@ -39,6 +39,7 @@ class CategoryPosts extends Block
             ->addTab('Treści', ['placement' => 'top'])
             ->addGroup('posts_settings', ['label' => ''])
             
+			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
             ->addTaxonomy('category', [
                 'label' => 'Wybierz kategorię',

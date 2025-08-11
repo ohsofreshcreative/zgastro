@@ -15,6 +15,7 @@
 @import '../css/blocks/accordion.scss';
 @import '../css/blocks/cases-slider.scss';
 @import '../css/blocks/contact.scss';
+@import '../css/blocks/categories.scss';
 
 @import 'swiper/css';
 @import 'swiper/css/navigation';

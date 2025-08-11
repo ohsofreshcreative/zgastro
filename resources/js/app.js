@@ -3,6 +3,12 @@ import.meta.glob(['../images/**', '../fonts/**']);
 import './menubar.js';
 import './footer-accordion.js';
 import './swiper.js';
+import MiniCart from './mini-cart.js'; // <-- DODAJ TO
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  new MiniCart();
+});
 
 /*--- BLOCKS ---*/
 
@@ -162,8 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (swipers.length > 0) {
     swipers.forEach((container) => {
       new Swiper(container, {
-        slidesPerView: 3,
-        spaceBetween: 30,
+        slidesPerView: 5,
+        spaceBetween: 32,
         loop: true,
         pagination: {
           el: container.querySelector('.swiper-pagination'),

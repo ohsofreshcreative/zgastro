@@ -103,4 +103,8 @@ add_filter('sage/acf-composer/fields', fn () => [
     App\Blocks\ExampleBlock::class,
 ]);
 
+/*--- WOOCOMMERCE.PHP ---*/
 
+array_walk(glob(get_template_directory() . '/app/*.php'), function ($file) {
+    $file = require_once $file;
+});

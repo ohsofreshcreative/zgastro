@@ -358,6 +358,8 @@ return array(
     'Egulias\\EmailValidator\\Warning\\Warning' => $vendorDir . '/egulias/email-validator/src/Warning/Warning.php',
     'Fruitcake\\Cors\\CorsService' => $vendorDir . '/fruitcake/php-cors/src/CorsService.php',
     'Fruitcake\\Cors\\Exceptions\\InvalidOptionException' => $vendorDir . '/fruitcake/php-cors/src/Exceptions/InvalidOptionException.php',
+    'Genero\\Sage\\WooCommerce\\WooCommerce' => $vendorDir . '/generoi/sage-woocommerce/src/WooCommerce.php',
+    'Genero\\Sage\\WooCommerce\\WooCommerceServiceProvider' => $vendorDir . '/generoi/sage-woocommerce/src/WooCommerceServiceProvider.php',
     'GrahamCampbell\\ResultType\\Error' => $vendorDir . '/graham-campbell/result-type/src/Error.php',
     'GrahamCampbell\\ResultType\\Result' => $vendorDir . '/graham-campbell/result-type/src/Result.php',
     'GrahamCampbell\\ResultType\\Success' => $vendorDir . '/graham-campbell/result-type/src/Success.php',

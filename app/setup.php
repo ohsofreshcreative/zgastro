@@ -63,6 +63,14 @@ add_filter('theme_file_path', function ($path, $file) {
  * @return void
  */
 add_action('after_setup_theme', function () {
+
+	// Dodaj wsparcie dla WooCommerce
+	add_theme_support('woocommerce');
+    add_theme_support('wc-product-gallery-zoom');
+    add_theme_support('wc-product-gallery-lightbox');
+    add_theme_support('wc-product-gallery-slider');
+	
+
 	/**
 	 * Disable full-site editing support.
 	 *
@@ -139,8 +147,8 @@ add_action('widgets_init', function () {
 	$defaultConfig = [
 		'before_widget' => '<section class="footer_widget widget %1$s %2$s">',
 		'after_widget' => '</section>',
-		'before_title' => '<h4 class="widget-title primary mb-4 flex">',
-		'after_title' => '</h4>',
+		'before_title' => '<h5 class="widget-title primary mb-4 flex">',
+		'after_title' => '</h5>',
 	];
 
 	register_sidebar([
@@ -166,6 +174,11 @@ add_action('widgets_init', function () {
 	register_sidebar([
 		'name' => __('Footer 4', 'sage'),
 		'id'   => 'sidebar-footer-4',
+	] + $defaultConfig);
+
+	register_sidebar([
+		'name' => __('Footer 5', 'sage'),
+		'id'   => 'sidebar-footer-5',
 	] + $defaultConfig);
 });
 
@@ -193,3 +206,4 @@ add_action('wp_footer', function () {
     </div>
     ';
 });
+

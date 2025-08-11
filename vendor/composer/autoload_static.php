@@ -139,6 +139,7 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
             'GrahamCampbell\\ResultType\\' => 26,
+            'Genero\\Sage\\WooCommerce\\' => 24,
         ),
         'F' => 
         array (
@@ -472,6 +473,10 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
+        'Genero\\Sage\\WooCommerce\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/generoi/sage-woocommerce/src',
         ),
         'Fruitcake\\Cors\\' => 
         array (
@@ -877,6 +882,8 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
         'Fruitcake\\Cors\\CorsService' => __DIR__ . '/..' . '/fruitcake/php-cors/src/CorsService.php',
         'Fruitcake\\Cors\\Exceptions\\InvalidOptionException' => __DIR__ . '/..' . '/fruitcake/php-cors/src/Exceptions/InvalidOptionException.php',
+        'Genero\\Sage\\WooCommerce\\WooCommerce' => __DIR__ . '/..' . '/generoi/sage-woocommerce/src/WooCommerce.php',
+        'Genero\\Sage\\WooCommerce\\WooCommerceServiceProvider' => __DIR__ . '/..' . '/generoi/sage-woocommerce/src/WooCommerceServiceProvider.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',
