@@ -61,6 +61,12 @@ class TextImage extends Block
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('id', [
+				'label' => 'ID',
+			])
+			->addText('class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -108,16 +114,6 @@ class TextImage extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
-			])
-			->addImage('bgimage', [
-				'label' => 'Obraz w tle #1',
-				'return_format' => 'array',
-				'preview_size' => 'medium',
-			])
-			->addImage('bgimage2', [
-				'label' => 'Obraz w tle #2',
-				'return_format' => 'array',
-				'preview_size' => 'medium',
 			]);
 
 		return $text_image;
@@ -127,6 +123,8 @@ class TextImage extends Block
 	{
 		return [
 			'textimg' => get_field('textimg'),
+			'id' => get_field('id'),
+			'class' => get_field('class'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
@@ -135,8 +133,6 @@ class TextImage extends Block
 			'graybg' => get_field('graybg'),
 			'whitebg' => get_field('whitebg'),
 			'brandbg' => get_field('brandbg'),
-			'bgimage' => get_field('bgimage'),
-			'bgimage2' => get_field('bgimage2'),
 		];
 	}
 }

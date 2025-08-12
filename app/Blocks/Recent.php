@@ -10,7 +10,7 @@ use WC_Product;
 class Recent extends Block
 {
     public $name = 'Slider - Najnowsze produkty';
-    public $description = 'Slider wyświetlający 12 najnowszych produktów.';
+    public $description = 'recent';
     public $slug = 'recent'; // ZMIANA: recent-products -> recent
     public $category = 'formatting';
     public $icon = 'products';
@@ -28,23 +28,21 @@ class Recent extends Block
 
         $recent
             ->setLocation('block', '==', 'acf/recent') // ZMIANA: acf/recent-products -> acf/recent
-            ->addText('block-title', [
-                'label' => 'Tytuł (dla łatwiejszej identyfikacji w panelu)',
-                'default_value' => 'Slider - Najnowsze produkty',
-            ])
+           ->addText('block-title', [
+				'label' => 'Tytuł',
+				'required' => 0,
+			])
             ->addAccordion('accordion_content', [
-                'label' => 'Treści',
+                'label' => 'Slider - Najnowsze produkty',
                 'open' => true,
                 'multi_expand' => false,
             ])
+			->addTab('Treści', ['placement' => 'top'])
             ->addText('subtitle', ['label' => 'Śródtytuł'])
             ->addText('title', ['label' => 'Tytuł'])
 
-            ->addAccordion('accordion_settings', [
-                'label' => 'Ustawienia bloku',
-                'open' => false,
-                'multi_expand' => false,
-            ])
+			->addTab('Ustawienia bloku', ['placement' => 'top'])
+            
             ->addText('id', [
                 'label' => 'ID sekcji',
             ])

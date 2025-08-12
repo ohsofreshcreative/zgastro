@@ -20,7 +20,7 @@
 				@if($show_image && has_post_thumbnail($post->ID))
 				<div class="post-image img-xs m-img">
 					<a href="{{ get_permalink($post->ID) }}">
-						{!! get_the_post_thumbnail($post->ID, 'large') !!}
+						{!! get_the_post_thumbnail($post->ID, 'largeB') !!}
 					</a>
 				</div>
 				@endif

@@ -7,7 +7,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class CategoryPosts extends Block
 {
-    public $name = 'Posty z kategorii';
+    public $name = 'Najnowsze wpisy';
     public $description = 'category-posts';
     public $slug = 'category-posts';
     public $category = 'formatting';
@@ -31,7 +31,7 @@ class CategoryPosts extends Block
                 'required' => 0,
             ])
             ->addAccordion('accordion1', [
-                'label' => 'Ustawienia postów',
+                'label' => 'Najnowsze wpisy',
                 'open' => true,
                 'multi_expand' => true,
             ])

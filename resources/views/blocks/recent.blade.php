@@ -4,11 +4,8 @@
 	@if(!empty($id)) id="{{ $id }}" @endif
 	class="recent -smt {{ $block->classes }} {{ $class ?? '' }} @if($lightbg) -light-bg @endif @if($nomt) -no-mt @endif"
 	data-gsap-anim="section">
-
-	{{-- Główny kontener `c-main` używa flexboxa do ułożenia kolumn --}}
 	<div class="c-main @if(!empty($title)) flex flex-col md:flex-row md:gap-8 items-center @endif">
 		
-		{{-- 1. KOLUMNA Z TEKSTEM (lewa strona) --}}
 		@if(!empty($title))
 		<div class="__wrapper block w-full md:w-1/3 mb-8 md:mb-0 flex-shrink-0">
 			<p class="text-xl text-gray">{{ $subtitle }}</p>
@@ -16,17 +13,8 @@
 		</div>
 		@endif
 
-		{{--
-			--- KLUCZOWE ZMIANY PONIŻEJ ---
-			Naśladujemy działającą strukturę z Twojego przykładu.
-		--}}
-
-		{{-- 2. KOLUMNA ZE SLIDEREM (prawa strona) --}}
-		{{-- Ten div jest "przycinaczem". Ma `overflow: hidden` i szerokość w `vw`. --}}
-		{{-- `w-full` jest dla mobile, `md:w-[60vw]` dla desktopa. --}}
 		<div class="slider-clipper w-full @if(!empty($title)) md:w-[60vw] @endif overflow-hidden">
 			@if(!empty($products))
-			{{-- Sam Swiper ma `!overflow-visible`, aby pokazywać fragmenty slajdów --}}
 			<div class="swiper usage-swiper !overflow-visible">
 				<div class="swiper-wrapper">
 					@foreach($products as $card)
@@ -35,7 +23,6 @@
 							class=""
 							target="{{ $card['button']['target'] ?? '_self' }}">
 							<div class="__card">
-								<div class="__rectangle absolute"></div>
 
 								@if(!empty($card['card_image']))
 								<div class="__img">

@@ -8,14 +8,11 @@ $sectionClass .= $lightbg ? ' section-light' : '';
 $sectionClass .= $graybg ? ' section-gray' : '';
 $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
-
-$sectionId = $block->data['id'] ?? null;
-$customClass = $block->data['className'] ?? '';
 @endphp
 
 <!--- text-image -->
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="text-image relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+<section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="text-image relative -smt {{ $block->classes }} {{ $sectionClass }} {{ $class }}">
 
 	<div class="__wrapper c-main relative">
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
