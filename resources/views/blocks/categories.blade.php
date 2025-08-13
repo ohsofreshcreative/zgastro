@@ -13,7 +13,7 @@
 		@endif
 
 		@if(!empty($categories))
-		<div class="swiper usage-swiper !overflow-visible mt-8">
+		<div class="swiper cat-swiper !overflow-visible mt-8">
 			<div class="swiper-wrapper">
 				@foreach($categories as $card)
 				<div class="swiper-slide">

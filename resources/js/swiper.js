@@ -67,7 +67,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const swipers = document.querySelectorAll('.usage-swiper');
+  const swipers = document.querySelectorAll('.recents-swiper');
+
+  if (swipers.length > 0) {
+    swipers.forEach((container) => {
+      new Swiper(container, {
+        slidesPerView: 3,
+        spaceBetween: 32,
+        loop: true,
+        pagination: {
+          el: container.querySelector('.swiper-pagination'),
+          clickable: true,
+        },
+        navigation: {
+          nextEl: container.querySelector('.swiper-button-next'),
+          prevEl: container.querySelector('.swiper-button-prev'),
+        },
+      });
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const swipers = document.querySelectorAll('.cat-swiper');
 
   if (swipers.length > 0) {
     swipers.forEach((container) => {

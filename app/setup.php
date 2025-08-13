@@ -66,10 +66,10 @@ add_action('after_setup_theme', function () {
 
 	// Dodaj wsparcie dla WooCommerce
 	add_theme_support('woocommerce');
-    add_theme_support('wc-product-gallery-zoom');
-    add_theme_support('wc-product-gallery-lightbox');
-    add_theme_support('wc-product-gallery-slider');
-	
+	add_theme_support('wc-product-gallery-zoom');
+	add_theme_support('wc-product-gallery-lightbox');
+	add_theme_support('wc-product-gallery-slider');
+
 
 	/**
 	 * Disable full-site editing support.
@@ -183,83 +183,107 @@ add_action('widgets_init', function () {
 });
 
 /*--- PRODUCT SHORT DESC ---*/
-
 // Przenieś krótki opis pod Add to Cart i meta
 add_action('after_setup_theme', function () {
-    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
-    add_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 45);
+	remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
+	add_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 45);
 });
+
+/*--- ADD ATRIBUTES --*/
+
+add_action('woocommerce_single_product_summary', function () {
+	global $product;
+	if (!$product instanceof \WC_Product) {
+		return;
+	}
+
+
+	echo '<section class="product-attributes mt-8 pt-8">';
+	echo '<h5 class="mb-4">Szczegóły</h5>';
+	// To buduje $product_attributes i samo wczytuje poprawny template
+	wc_display_product_attributes($product);
+	echo '</section>';
+}, 46);
+
+/*--- HIDE RESET VARIATIONS */
+
+add_filter('woocommerce_reset_variations_link', '__return_empty_string');
 
 /*--- HIDE QUANTITY ---*/
 
-add_filter('woocommerce_is_sold_individually', function ($return, $product) {
-    return true; // wymusza brak pola ilości
+// Ukryj quantity TYLKO na stronie produktu (w koszyku zostaw)
+add_filter('woocommerce_is_sold_individually', function ($sold_individually, $product) {
+    if (is_product()) {
+        return true; // na stronie produktu brak pola ilości (max 1 na klik)
+    }
+    return $sold_individually; // w koszyku i gdzie indziej zostaje domyślnie
 }, 10, 2);
+
+/*--- WOOCOMMERCE - HIDE TABS ---*/
+
+add_filter('woocommerce_product_tabs', '__return_empty_array', 98);
 
 /*--- PRODUCT FIELDS ---*/
 
 add_action('acf/init', function () {
-    if (!function_exists('acf_add_local_field_group')) {
-        return;
-    }
+	if (!function_exists('acf_add_local_field_group')) {
+		return;
+	}
 
-    acf_add_local_field_group([
-        'key' => 'group_product_extras',
-        'title' => 'Dodatkowe informacje o produkcie',
-        'fields' => [
-            [
-                'key' => 'field_product_extras',
-                'label' => 'Sekcje (powtarzalne)',
-                'name' => 'product_extras', // <- repeater
-                'type' => 'repeater',
-                'layout' => 'table',
-                'collapsed' => '',
-                'button_label' => 'Dodaj sekcję',
-                'sub_fields' => [
-                    [
-                        'key' => 'field_product_extras_image',
-                        'label' => 'Obraz',
-                        'name' => 'image',
-                        'type' => 'image',
-                        'return_format' => 'array',
-                        'preview_size' => 'thumbnail',
-                        'library' => 'all',
-                    ],
-                    [
-                        'key' => 'field_product_extras_text',
-                        'label' => 'Tekst',
-                        'name' => 'text',
-                        'type' => 'textarea', 
-                        'rows' => 3,
-                        'new_lines' => 'br', 
-                    ],
-                ],
-            ],
-        ],
-        'location' => [
-            [
-                [
-                    'param' => 'post_type',
-                    'operator' => '==',
-                    'value' => 'product',
-                ],
-            ],
-        ],
-        'menu_order' => 0,
-        'position' => 'normal',
-        'style' => 'default',
-        'label_placement' => 'top',
-        'instruction_placement' => 'label',
-        'active' => true,
-        'description' => '',
-        // opcjonalnie: warunki widoczności tylko dla konkretnej kategorii
-        // 'conditional_logic' => 0,
-    ]);
+	acf_add_local_field_group([
+		'key' => 'group_product_extras',
+		'title' => 'Dodatkowe informacje o produkcie',
+		'fields' => [
+			[
+				'key' => 'field_product_extras',
+				'label' => 'Sekcje (powtarzalne)',
+				'name' => 'product_extras', // <- repeater
+				'type' => 'repeater',
+				'layout' => 'table',
+				'collapsed' => '',
+				'button_label' => 'Dodaj sekcję',
+				'sub_fields' => [
+					[
+						'key' => 'field_product_extras_image',
+						'label' => 'Obraz',
+						'name' => 'image',
+						'type' => 'image',
+						'return_format' => 'array',
+						'preview_size' => 'thumbnail',
+						'library' => 'all',
+					],
+					[
+						'key' => 'field_product_extras_text',
+						'label' => 'Tekst',
+						'name' => 'text',
+						'type' => 'textarea',
+						'rows' => 3,
+						'new_lines' => 'br',
+					],
+				],
+			],
+		],
+		'location' => [
+			[
+				[
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'product',
+				],
+			],
+		],
+		'menu_order' => 0,
+		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'active' => true,
+		'description' => '',
+		// opcjonalnie: warunki widoczności tylko dla konkretnej kategorii
+		// 'conditional_logic' => 0,
+	]);
 });
 
 add_action('woocommerce_single_product_summary', function () {
-    echo \Roots\view('woocommerce/single-product/acf-extras')->render();
-}, 15); 
-
-
-
+	echo \Roots\view('woocommerce/single-product/acf-extras')->render();
+}, 15);

@@ -52,7 +52,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 							@foreach ($category['products'] as $product)
 							<div class="product-card">
 								<a href="{{ $product['permalink'] }}">
-									<div class="">
+									<div class="__img">
 										{!! $product['image'] !!}
 									</div>
 									<div class="p-4">

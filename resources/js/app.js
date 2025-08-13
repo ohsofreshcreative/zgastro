@@ -1,6 +1,7 @@
 import.meta.glob(['../images/**', '../fonts/**']);
 
 import './menubar.js';
+import './quantity.js';
 import './footer-accordion.js';
 import './swiper.js';
 import MiniCart from './mini-cart.js'; // <-- DODAJ TO

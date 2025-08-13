@@ -15,7 +15,7 @@
 
 		<div class="slider-clipper w-full @if(!empty($title)) md:w-[60vw] @endif overflow-hidden">
 			@if(!empty($products))
-			<div class="swiper usage-swiper !overflow-visible">
+			<div class="swiper recents-swiper !overflow-visible">
 				<div class="swiper-wrapper">
 					@foreach($products as $card)
 					<div class="swiper-slide">
@@ -26,7 +26,7 @@
 
 								@if(!empty($card['card_image']))
 								<div class="__img">
-									{!! wp_get_attachment_image($card['card_image']['ID'], 'large', false, ['class' => 'img-m']) !!}
+									{!! wp_get_attachment_image($card['card_image']['ID'], 'large', false, ['class' => 'img-m object-cover']) !!}
 								</div>
 								@endif
 

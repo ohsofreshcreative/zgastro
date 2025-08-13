@@ -7,11 +7,13 @@
 
 @import '../css/blocks/hero.scss';
 @import '../css/blocks/hero-offer.scss';
+@import '../css/blocks/cards.scss';
 @import '../css/blocks/text-image.scss';
 @import '../css/blocks/area-block.scss';
 @import '../css/blocks/cases.scss';
 @import '../css/blocks/promo.scss';
 @import '../css/blocks/mission.scss';
+@import '../css/blocks/product-grid.scss';
 @import '../css/blocks/numbers.scss';
 @import '../css/blocks/history.scss';
 @import '../css/blocks/accordion.scss';
