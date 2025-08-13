@@ -5,60 +5,67 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class HomeAbout extends Block
+class Promo extends Block
 {
-	public $name = 'Strona główna - O nas';
-	public $description = 'home-about';
-	public $slug = 'home-about';
+	public $name = 'Slider - Promocje';
+	public $description = 'promo';
+	public $slug = 'promo';
 	public $category = 'formatting';
-	public $icon = 'screenoptions';
-	public $keywords = ['O nas', 'Strona glowna'];
+	public $icon = 'image-flip-horizontal';
+	public $keywords = ['promo', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
-		'anchor' => true,
-		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$home_about = new FieldsBuilder('home-about');
+		$promo = new FieldsBuilder('promo');
 
-		$home_about
-			->setLocation('block', '==', 'acf/home-about') // ważne!
+		$promo
+			->setLocation('block', '==', 'acf/promo') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Strona główna - O nas',
+				'label' => 'Slider - Promocje',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GRUPA #1 ---*/
+			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('about1', ['label' => ''])
-			->addText('subtitle', ['label' => 'Śródtytuł'])
-			->addText('title', ['label' => 'Tytuł'])
-			->addImage('image', [
+			->addGroup('g_promo', ['label' => ''])
+
+            ->addText('subtitle', ['label' => 'Śródtytuł'])
+            ->addText('title', ['label' => 'Tytuł'])
+
+			->addRepeater('repeater', [
+				'label' => 'Slider - Promocje',
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 1,
+				'max' => 10,
+				'button_label' => 'Dodaj kafelek'
+			])
+			->addImage('card_image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('top', ['label' => 'Nagłówek'])
-			->addWysiwyg('content', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-				'wpautop' => false,
+			->addText('card_title', [
+				'label' => 'Nagłówek',
 			])
-			->addLink('cta', [
+			->addText('card_subtitle', [
+				'label' => 'Dodatkowy tekst',
+			])
+			->addLink('button', [
 				'label' => 'Przycisk',
 				'return_format' => 'array',
 			])
+			->endRepeater()
+
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -119,13 +126,14 @@ class HomeAbout extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $home_about;
+		return $promo;
 	}
 
 	public function with()
 	{
 		return [
-			'about1' => get_field('about1'),
+			'g_promo' => get_field('g_promo'),
+			'promo' => get_field('g_promo')['repeater'] ?? [],
 			'id' => get_field('id'),
 			'class' => get_field('class'),
 			'flip' => get_field('flip'),

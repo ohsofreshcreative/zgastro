@@ -12,13 +12,13 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
 @if ($categories_data)
-<section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="product-grid relative {{ $sectionClass }} {{ $class }}">
+<section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="product-grid relative -smt {{ $sectionClass }} {{ $class }}">
 	<div class="container mx-auto px-4">
 		<div class="">
 			<p class="text-xl text-gray">{{ $subtitle }}</p>
-			<h1 class="big">{{ $title }}</h1>
+			<h2 class="big">{{ $title }}</h2>
 		</div>
-		<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+		<div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-14">
 			<aside class="lg:col-span-1">
 				<div class="sticky top-8">
 					<h3 class="text-lg font-semibold mb-4">Wybierz swój styl</h3>
@@ -56,9 +56,9 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 										{!! $product['image'] !!}
 									</div>
 									<div class="p-4">
-										<h4 class="">{{ $product['title'] }}</h4>
+										<h5 class="product-title">{{ $product['title'] }}</h5>
 										@if ($product['price'])
-										<p class="">{!! $product['price'] !!}</p>
+										<p class="text-h6">{!! $product['price'] !!}</p>
 										@endif
 									</div>
 								</a>

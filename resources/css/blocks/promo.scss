@@ -1,0 +1,58 @@
+/*--- PROMO ---*/
+.promo {
+/* Dodajemy tę regułę, aby slide i karta miały zdefiniowaną wysokość */
+.swiper-slide,
+ .__card {
+  height: 500px; /* Ustawiamy na taką samą wysokość jak obrazek */
+}
+
+.__card {
+  position: relative;
+  /* Upewnij się, że karta wypełnia całą dostępną przestrzeń slajdu */
+  width: 100%;
+  display: block;
+}
+
+ .__img {
+  /* Obrazek powinien być tłem dla karty, a nie elementem ustalającym jej rozmiar */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+ .__img img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%; /* Obrazek wypełnia cały kontener .__img */
+  vertical-align: middle;
+}
+
+.__overlay {
+  background-color: rgba(0, 0, 0, .4);
+  position: relative; /* ZMIANA: z absolute na relative */
+  z-index: 2; /* Upewniamy się, że nakładka jest nad obrazkiem */
+  
+  /* Flexbox do centrowania */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  /* Upewniamy się, że overlay wypełnia całą kartę */
+  width: 100%;
+  height: 100%;
+  
+  padding: 40px;
+  text-align: center;
+}
+
+.__content {
+  /* Ten element nie potrzebuje już żadnych specjalnych stylów */
+}
+
+/* Pozostałe style dla Swipera (nawigacja, paginacja) zostają bez zmian */
+.promo-swiper {
+  min-height: 500px;
+}
+}

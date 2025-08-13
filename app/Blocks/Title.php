@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class HomeAbout extends Block
+class Title extends Block
 {
-	public $name = 'Strona główna - O nas';
-	public $description = 'home-about';
-	public $slug = 'home-about';
+	public $name = 'Nagłówek';
+	public $description = 'title';
+	public $slug = 'title';
 	public $category = 'formatting';
-	public $icon = 'screenoptions';
-	public $keywords = ['O nas', 'Strona glowna'];
+	public $icon = 'align-pull-left';
+	public $keywords = ['tresc', 'zdjecie'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -24,41 +24,24 @@ class HomeAbout extends Block
 
 	public function fields()
 	{
-		$home_about = new FieldsBuilder('home-about');
+		$title = new FieldsBuilder('title');
 
-		$home_about
-			->setLocation('block', '==', 'acf/home-about') // ważne!
+		$title
+			->setLocation('block', '==', 'acf/title') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Strona główna - O nas',
+				'label' => 'Nagłówek',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GRUPA #1 ---*/
+			/*--- GROUP ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('about1', ['label' => ''])
+			->addGroup('g_title', ['label' => ''])
 			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('top', ['label' => 'Nagłówek'])
-			->addWysiwyg('content', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-				'wpautop' => false,
-			])
-			->addLink('cta', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
-			])
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -119,13 +102,13 @@ class HomeAbout extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $home_about;
+		return $title;
 	}
 
 	public function with()
 	{
 		return [
-			'about1' => get_field('about1'),
+			'g_title' => get_field('g_title'),
 			'id' => get_field('id'),
 			'class' => get_field('class'),
 			'flip' => get_field('flip'),

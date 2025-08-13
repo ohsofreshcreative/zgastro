@@ -40,8 +40,8 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 				<div class="__card relative flex items-start gap-4">
 					<img class="mb-6 w-[40px]" src="{{ $item['card_image']['url'] }}" alt="{{ $item['card_image']['alt'] ?? '' }}" />
 					<div>
-						<p class="m-title">{{ $item['card_title'] }}</p>
-						<p class="">{{ $item['card_txt'] }}</p>
+						<b class="m-title">{{ $item['card_title'] }}</b>
+						<p class="text-lg mt-2">{{ $item['card_txt'] }}</p>
 					</div>
 				</div>
 				@endforeach

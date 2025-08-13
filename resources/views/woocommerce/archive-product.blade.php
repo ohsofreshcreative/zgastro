@@ -27,9 +27,6 @@ the readme will list any important changes.
       <h1 class="woocommerce-products-header__title page-title">{!! woocommerce_page_title(false) !!}</h1>
     @endif
 
-    @php
-      do_action('woocommerce_archive_description')
-    @endphp
   </header>
 
   @if (woocommerce_product_loop())
@@ -57,6 +54,38 @@ the readme will list any important changes.
       do_action('woocommerce_no_products_found')
     @endphp
   @endif
+
+<!--- DESCRIPTION --->
+@php
+  $term = get_queried_object();
+@endphp
+
+@if ($term instanceof WP_Term && $term->taxonomy === 'product_cat')
+  @php
+    $term_id = $term->term_id;
+
+
+    $acf_header = get_field('header', 'term_' . $term_id);
+    if (!$acf_header) {
+      $acf_header = get_field('header', 'product_cat_' . $term_id);
+    }
+
+    $term_desc = term_description($term_id, 'product_cat');
+  @endphp
+
+  <section class="shop-term-intro">
+    @if (!empty($acf_header))
+      <h4 class="shop-term-heading">{{ $acf_header }}</h4>
+    @endif
+
+    @if (!empty($term_desc))
+      <div class="shop-term-description">{!! $term_desc !!}</div>
+    @endif
+  </section>
+  
+@endif
+
+<!--- DESCRIPTION END --->
 
   @php
     do_action('woocommerce_after_main_content');

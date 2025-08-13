@@ -21,15 +21,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/*--- SWIPER ---*/
 
-import Swiper from 'swiper';
-import 'swiper/css';
-
-// Dodatkowe moduły (opcjonalnie)
-import { Navigation, Pagination } from 'swiper/modules';
-
-Swiper.use([Navigation, Pagination]);
 
 /*--- ALPINE ---*/
 
@@ -138,101 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-/*--- SWIPER ---*/
-
-document.addEventListener('DOMContentLoaded', () => {
-  const swipers = document.querySelectorAll('.swiper');
-
-  if (swipers.length > 0) {
-    swipers.forEach((container) => {
-      new Swiper(container, {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        pagination: {
-          el: container.querySelector('.swiper-pagination'),
-          clickable: true,
-        },
-        navigation: {
-          nextEl: container.querySelector('.swiper-button-next'),
-          prevEl: container.querySelector('.swiper-button-prev'),
-        },
-      });
-    });
-  }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const swipers = document.querySelectorAll('.usage-swiper');
-
-  if (swipers.length > 0) {
-    swipers.forEach((container) => {
-      new Swiper(container, {
-        slidesPerView: 5,
-        spaceBetween: 32,
-        loop: true,
-        pagination: {
-          el: container.querySelector('.swiper-pagination'),
-          clickable: true,
-        },
-        navigation: {
-          nextEl: container.querySelector('.swiper-button-next'),
-          prevEl: container.querySelector('.swiper-button-prev'),
-        },
-      });
-    });
-  }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const swipers = document.querySelectorAll('.offer-swiper');
-
-  if (swipers.length > 0) {
-    swipers.forEach((container) => {
-      const swiper = new Swiper(container, {
-        slidesPerView: 3,
-        spaceBetween: 32,
-        pagination: {
-          el: container.querySelector('.swiper-pagination'),
-          clickable: true,
-        },
-        navigation: {
-          nextEl: container.querySelector('.swiper-button-next'),
-          prevEl: container.querySelector('.swiper-button-prev'),
-        },
-        breakpoints: {
-          0: { slidesPerView: 1.1, spaceBetween: 20 },
-          768: { slidesPerView: 2.2, spaceBetween: 30 },
-          1024: { slidesPerView: 3.2, spaceBetween: 32 },
-        },
-        on: {
-          init: function () {
-            updateFirstVisibleSlide(this, container);
-          },
-          slideChange: function () {
-            updateFirstVisibleSlide(this, container);
-          },
-        },
-      });
-
-      // Helper function to update first visible slide
-      function updateFirstVisibleSlide(swiperInstance, swiperContainer) {
-        // First, remove the class from all slides within THIS specific swiper only
-        const allSlides = swiperContainer.querySelectorAll('.swiper-slide');
-        allSlides.forEach((slide) => {
-          slide.classList.remove('first-visible-slide');
-        });
-
-        // Then, add the class only to the first visible slide of THIS swiper
-        if (swiperInstance.slides[swiperInstance.activeIndex]) {
-          swiperInstance.slides[swiperInstance.activeIndex].classList.add(
-            'first-visible-slide'
-          );
-        }
-      }
-    });
-  }
-});
 
 document.addEventListener('DOMContentLoaded', function () {
   const svgs = gsap.utils.toArray('.animated-svg');
@@ -274,6 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
 
 /*--- WHITE SVG ANIMATION ---*/
 

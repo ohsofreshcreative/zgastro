@@ -12,7 +12,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 
 <!--- text-image -->
 
-<section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="text-image relative -smt {{ $block->classes }} {{ $sectionClass }} {{ $class }}">
+<section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="text-image relative -smt {{ $sectionClass }} {{ $class }}">
 
 	<div class="__wrapper c-main relative">
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
@@ -36,13 +36,5 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			</div>
 
 		</div>
-		@if ($bgimage)
-		<img data-gsap-element="bg1" class="__bg--first absolute" src="{{ $bgimage['url'] }}" alt="{{ $bgimage['alt'] ?? '' }}">
-		@endif
-	</div>
-
-		@if ($bgimage2)
-		<img data-gsap-element="bg2" class="__bg--second absolute" src="{{ $bgimage2['url'] }}" alt="{{ $bgimage2['alt'] ?? '' }}">
-		@endif
 
 </section>

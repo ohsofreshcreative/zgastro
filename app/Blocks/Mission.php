@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class HomeAbout extends Block
+class Mission extends Block
 {
-	public $name = 'Strona główna - O nas';
-	public $description = 'home-about';
-	public $slug = 'home-about';
+	public $name = 'Misja';
+	public $description = 'mission';
+	public $slug = 'mission';
 	public $category = 'formatting';
-	public $icon = 'screenoptions';
-	public $keywords = ['O nas', 'Strona glowna'];
+	public $icon = 'editor-alignleft';
+	public $keywords = ['tresc', 'zdjecie'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -24,38 +24,39 @@ class HomeAbout extends Block
 
 	public function fields()
 	{
-		$home_about = new FieldsBuilder('home-about');
+		$mission = new FieldsBuilder('mission');
 
-		$home_about
-			->setLocation('block', '==', 'acf/home-about') // ważne!
+		$mission
+			->setLocation('block', '==', 'acf/mission') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Strona główna - O nas',
+				'label' => 'Misja',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GRUPA #1 ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('about1', ['label' => ''])
-			->addText('subtitle', ['label' => 'Śródtytuł'])
-			->addText('title', ['label' => 'Tytuł'])
+			/*--- GROUP ---*/
+			->addTab('Elementy', ['placement' => 'top'])
+			->addGroup('g_mission', ['label' => ''])
 			->addImage('image', [
-				'label' => 'Obraz',
+				'label' => 'Obraz #1',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('top', ['label' => 'Nagłówek'])
+			->addImage('image2', [
+				'label' => 'Obraz #2',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
 			->addWysiwyg('content', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
 				'toolbar' => 'full', // 'basic', 'full'
 				'media_upload' => true,
-				'wpautop' => false,
 			])
-			->addLink('cta', [
+			->addLink('button', [
 				'label' => 'Przycisk',
 				'return_format' => 'array',
 			])
@@ -119,13 +120,13 @@ class HomeAbout extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $home_about;
+		return $mission;
 	}
 
 	public function with()
 	{
 		return [
-			'about1' => get_field('about1'),
+			'g_mission' => get_field('g_mission'),
 			'id' => get_field('id'),
 			'class' => get_field('class'),
 			'flip' => get_field('flip'),

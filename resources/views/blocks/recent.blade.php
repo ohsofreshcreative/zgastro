@@ -31,11 +31,11 @@
 								@endif
 
 								@if(!empty($card['card_title']))
-								<h6 class="block m-title text-center">{{ $card['card_title'] }}</h6>
+								<h5 class="product-title block m-title text-center">{{ $card['card_title'] }}</h5>
 								@endif
 
 								@if(!empty($card['card_txt']))
-								<div class="__txt text-center">{!! $card['card_txt'] !!}</div>
+								<div class="__txt text-h6 text-center">{!! $card['card_txt'] !!}</div>
 								@endif
 							</div>
 						</a>

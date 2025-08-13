@@ -182,28 +182,84 @@ add_action('widgets_init', function () {
 	] + $defaultConfig);
 });
 
+/*--- PRODUCT SHORT DESC ---*/
 
-/*-- CAREER MODAL ---*/
-
-add_action('wp_footer', function () {
-	$cf7_shortcode = '[contact-form-7 id="e0f7075" title="Wyślij CV"]';
-
-	echo '
-    <!-- Modal Overlay -->
-    <div id="side-modal-overlay" class="fixed inset-0 bg-black bg-opacity-20 z-50 hidden transition-opacity duration-300 ease-in-out"></div>
-
-    <!-- Side Modal -->
-    <div id="side-modal" class="fixed top-0 right-0 h-full w-full max-w-lg bg-white shadow-lg z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="p-8 h-full overflow-y-auto">
-            <button id="modal-close-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
-			<h5 class="m-title">Aplikuj na to stanowisko</h5>
-            <div>Wypełnij formularz i dołącz swoje CV – odezwiemy się, aby omówić szczegóły i odpowiedzieć na Twoje pytania.</div>
-            <!-- CF7 Form Container -->
-            <div class="modal-content mt-8">
-                ' . do_shortcode($cf7_shortcode) . '
-            </div>
-        </div>
-    </div>
-    ';
+// Przenieś krótki opis pod Add to Cart i meta
+add_action('after_setup_theme', function () {
+    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
+    add_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 45);
 });
+
+/*--- HIDE QUANTITY ---*/
+
+add_filter('woocommerce_is_sold_individually', function ($return, $product) {
+    return true; // wymusza brak pola ilości
+}, 10, 2);
+
+/*--- PRODUCT FIELDS ---*/
+
+add_action('acf/init', function () {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group([
+        'key' => 'group_product_extras',
+        'title' => 'Dodatkowe informacje o produkcie',
+        'fields' => [
+            [
+                'key' => 'field_product_extras',
+                'label' => 'Sekcje (powtarzalne)',
+                'name' => 'product_extras', // <- repeater
+                'type' => 'repeater',
+                'layout' => 'table',
+                'collapsed' => '',
+                'button_label' => 'Dodaj sekcję',
+                'sub_fields' => [
+                    [
+                        'key' => 'field_product_extras_image',
+                        'label' => 'Obraz',
+                        'name' => 'image',
+                        'type' => 'image',
+                        'return_format' => 'array',
+                        'preview_size' => 'thumbnail',
+                        'library' => 'all',
+                    ],
+                    [
+                        'key' => 'field_product_extras_text',
+                        'label' => 'Tekst',
+                        'name' => 'text',
+                        'type' => 'textarea', 
+                        'rows' => 3,
+                        'new_lines' => 'br', 
+                    ],
+                ],
+            ],
+        ],
+        'location' => [
+            [
+                [
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'product',
+                ],
+            ],
+        ],
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'active' => true,
+        'description' => '',
+        // opcjonalnie: warunki widoczności tylko dla konkretnej kategorii
+        // 'conditional_logic' => 0,
+    ]);
+});
+
+add_action('woocommerce_single_product_summary', function () {
+    echo \Roots\view('woocommerce/single-product/acf-extras')->render();
+}, 15); 
+
+
 

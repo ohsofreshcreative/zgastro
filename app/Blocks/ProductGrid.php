@@ -45,12 +45,18 @@ class ProductGrid extends Block
 				'taxonomy' => 'product_cat',
 				'field_type' => 'checkbox',
 				'add_term' => 0,
-				'load_terms' => 1,
+				'load_terms' => 0,
 				'return_format' => 'id',
 			])
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('id', [
+				'label' => 'ID',
+			])
+			->addText('class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -111,6 +117,8 @@ class ProductGrid extends Block
 			'categories_data' => $this->getCategoriesWithProducts($selected_ids ?: []),
 			'subtitle' => get_field('subtitle'),
 			'title' => get_field('title'),
+			'id' => get_field('id'),
+			'class' => get_field('class'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
