@@ -28,7 +28,10 @@ the readme will list any important changes.
     @endif
 
   </header>
-
+@php
+  // TO MIEJSCE JEST KLUCZOWE — bez tego toolbar nie ma gdzie się wstrzyknąć
+  do_action('woocommerce_archive_description');
+@endphp
   @if (woocommerce_product_loop())
     @php
       do_action('woocommerce_before_shop_loop');

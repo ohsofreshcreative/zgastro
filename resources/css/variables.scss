@@ -160,6 +160,9 @@ body {
   --footer-py: 104px 0;
 
   --gradient: linear-gradient(90deg, var(--p-900) 0%, var(--primary) 100%);
+  :focus-visible {
+    outline: none !important;
+  }
 }
 
 /*--- !CONTAINERS ---*/
@@ -413,7 +416,8 @@ h5,
   line-height: 2rem;
 }
 
-h5.product-title {
+h5.product-title,
+h5.woocommerce-loop-product__title {
   font-size: 20px !important;
   line-height: 1.8rem;
 }
@@ -637,7 +641,7 @@ h6,
 
 #place_order {
   width: 100% !important;
-  margin-top:24px;
+  margin-top: 24px;
 }
 
 .main-btn:hover,
@@ -760,6 +764,10 @@ h6,
   width: max-content;
 }
 
+.underline-btn.active {
+  color: var(--p-800);
+  border-bottom: 1px solid var(--p-800);
+}
 /* .underline-btn::after {
   content: url('http://kreacja.local/wp-content/uploads/2025/06/btn-arrow.svg');
   height: 10px;
@@ -792,6 +800,11 @@ h6,
   border-radius: var(--btns-radius);
   text-decoration: none;
   white-space: nowrap;
+}
+
+.menu-btn.active {
+  background: var(--p-700);
+  color: #fff !important;
 }
 
 .menu-btn:hover {
@@ -1440,10 +1453,85 @@ input[type='checkbox'] {
   }
   .button {
     color: #fff !important;
+	padding: 4px 16px !important;
   }
+}
+.cart-drawer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+.cart-drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.cart-drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 90vw);
+  max-width: 100%;
+  background: #fff;
+  transform: translateX(100%);
+  transition: transform 0.25s;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 25px rgba(0, 0, 0, 0.15);
+}
+.cart-drawer__header,
+.cart-drawer__footer {
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+.cart-drawer__footer {
+  border-top: 1px solid #eee;
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+}
+.cart-drawer__content {
+  padding: 16px;
+  overflow: auto;
+}
+
+.cart-drawer__close {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* gdy otwarte */
+html.cart-drawer-open .cart-drawer {
+  pointer-events: auto;
+}
+html.cart-drawer-open .cart-drawer__panel {
+  transform: translateX(0);
+}
+html.cart-drawer-open .cart-drawer__backdrop {
+  opacity: 1;
 }
 
 /*--- !SHOP PAGE ---*/
+
+.woocommerce span.onsale {
+  padding: 8px;
+  border-radius: 0;
+  line-height: unset !important;
+  min-height: unset !important;
+  background: var(--secondary);
+  color: var(--body);
+  top: 1.5em;
+  left: 8.5em;
+}
 
 .price {
   color: var(--body) !important;
@@ -1546,6 +1634,10 @@ input[type='checkbox'] {
   margin-top: 56px !important;
 }
 
+.product .quantity {
+  display: none !important;
+}
+
 /*--- !CART ---*/
 
 .woocommerce-cart-form {
@@ -1611,6 +1703,9 @@ input[type='checkbox'] {
       width: 144px !important;
       border-radius: 64px;
     }
+	button {
+		padding:9px 16px !important
+	}
   }
 }
 
@@ -1669,25 +1764,26 @@ input[type='checkbox'] {
 }
 
 .checkout {
-	.input-text, select {
-		border:1px solid var(--border-p) !important;
-		padding:16px !important;
-	}
-	.select2-container .select2-dropdown, .select2-container .select2-selection {
-		border:1px solid var(--border-p) !important;
-		padding:8px 16px !important;
-	}
-	.select2-results__options {
-		border:1px solid var(--border-p) !important;
-	}
-	.select2-container.select2-container--open .select2-dropdown--below {
-		border:1px solid var(--border-p) !important;
-	}
-
+  .input-text,
+  select {
+    border: 1px solid var(--border-p) !important;
+    padding: 16px !important;
+  }
+  .select2-container .select2-dropdown,
+  .select2-container .select2-selection {
+    border: 1px solid var(--border-p) !important;
+    padding: 8px 16px !important;
+  }
+  .select2-results__options {
+    border: 1px solid var(--border-p) !important;
+  }
+  .select2-container.select2-container--open .select2-dropdown--below {
+    border: 1px solid var(--border-p) !important;
+  }
 }
 
 #ship-to-different-address {
-	font-size: 18px !important;
+  font-size: 18px !important;
 }
 
 /*--- !FOOTER ---*/
@@ -1706,6 +1802,10 @@ input[type='checkbox'] {
 
     ul li {
       margin-bottom: 16px;
+    }
+
+    p {
+      color: #fff !important;
     }
 
     a {

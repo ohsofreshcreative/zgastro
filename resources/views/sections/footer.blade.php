@@ -1,4 +1,6 @@
+
 <footer class="footer -smt">
+
 	<div class="bg-dark">
 		<div class="__wrapper c-main">
 			<div class="__widgets footer-py grid gap-4 md:gap-6">

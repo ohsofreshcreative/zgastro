@@ -211,13 +211,14 @@ add_filter('woocommerce_reset_variations_link', '__return_empty_string');
 
 /*--- HIDE QUANTITY ---*/
 
-// Ukryj quantity TYLKO na stronie produktu (w koszyku zostaw)
+// Ukryj quantity TYLKO na stronie produktu
 add_filter('woocommerce_is_sold_individually', function ($sold_individually, $product) {
-    if (is_product()) {
-        return true; // na stronie produktu brak pola ilości (max 1 na klik)
-    }
-    return $sold_individually; // w koszyku i gdzie indziej zostaje domyślnie
+	if (is_product()) {
+		return true; // Brak pola ilości na stronie produktu
+	}
+	return $sold_individually;
 }, 10, 2);
+
 
 /*--- WOOCOMMERCE - HIDE TABS ---*/
 
@@ -287,3 +288,274 @@ add_action('acf/init', function () {
 add_action('woocommerce_single_product_summary', function () {
 	echo \Roots\view('woocommerce/single-product/acf-extras')->render();
 }, 15);
+
+/*--- AJAX CART ---*/
+
+// AJAX fragment dla licznika koszyka
+add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+	ob_start(); ?>
+	<span class="js-cart-count absolute -top-1 -right-1 min-w-[1.25rem] h-5 px-1 rounded-full bg-primary text-white text-xs flex items-center justify-center">
+		<?= WC()->cart ? WC()->cart->get_cart_contents_count() : 0; ?>
+	</span>
+<?php
+	$fragments['.js-cart-count'] = ob_get_clean();
+	return $fragments;
+});
+
+
+add_action('rest_api_init', function () {
+	register_rest_route('oos/v1', '/search-products', [
+		'methods'  => 'GET',
+		'callback' => function (\WP_REST_Request $req) {
+			$q = trim((string) $req->get_param('q'));
+			if (mb_strlen($q) < 3) {
+				return new \WP_REST_Response(['items' => []], 200);
+			}
+
+			$args = [
+				'post_type'           => 'product',
+				'post_status'         => 'publish',
+				's'                   => $q,
+				'posts_per_page'      => 8,
+				'ignore_sticky_posts' => true,
+				'no_found_rows'       => true,
+			];
+
+			$query  = new \WP_Query($args);
+			$items  = [];
+
+			foreach ($query->posts as $p) {
+				$id      = $p->ID;
+				$product = wc_get_product($id);
+				if (!$product) continue;
+
+				$items[] = [
+					'id'    => $id,
+					'title' => get_the_title($id),
+					'url'   => get_permalink($id),
+					'img'   => get_the_post_thumbnail_url($id, 'woocommerce_thumbnail') ?: wc_placeholder_img_src('woocommerce_thumbnail'),
+					'price' => $product->get_price_html(),
+				];
+			}
+
+			return new \WP_REST_Response(['items' => $items], 200);
+		},
+		'permission_callback' => '__return_true',
+	]);
+});
+
+/*--- NOWOŚCI ---*/
+
+// ===============================================
+// NOWOŚCI: /nowosci  (jak Sklep, tylko nowsze X dni)
+// ===============================================
+
+// 1) Rewrites + query vars
+add_action('init', function () {
+	add_rewrite_tag('%novelties%', '([0-1])');
+	add_rewrite_rule('^nowosci/?$', 'index.php?post_type=product&novelties=1', 'top');
+	add_rewrite_rule('^nowosci/page/([0-9]+)/?$', 'index.php?post_type=product&novelties=1&paged=$matches[1]', 'top');
+});
+
+add_filter('query_vars', function ($vars) {
+	$vars[] = 'novelties';
+	$vars[] = 'days'; // ?days=30|60|90
+	return $vars;
+});
+
+// 2) Filtrowanie produktów po dacie (domyślnie 30 dni)
+add_action('woocommerce_product_query', function ($q) {
+	if (!get_query_var('novelties')) {
+		return;
+	}
+	$allowed = [30, 60, 90];
+	$days = (int) get_query_var('days');
+	if (!in_array($days, $allowed, true)) {
+		$days = 30;
+	}
+
+	$q->set('date_query', [[
+		'after'     => date_i18n('Y-m-d', strtotime("-{$days} days")),
+		'column'    => 'post_date',
+		'inclusive' => true,
+	]]);
+}, 10, 1);
+
+// 3) Toolbar 30/60/90 — WIDOCZNY ZAWSZE (również gdy brak produktów)
+add_action('woocommerce_archive_description', function () {
+	if (!get_query_var('novelties')) return;
+
+	$allowed = [30, 60, 90];
+	$days = (int) get_query_var('days');
+	if (!in_array($days, $allowed, true)) $days = 30;
+
+	$base = home_url('/nowosci/');
+
+	echo '<div class="novelties-toolbar" style="margin:1rem 0; display:flex; gap:16px; flex-wrap:wrap;">';
+	foreach ($allowed as $d) {
+		$url = add_query_arg('days', $d, $base);
+		$active = $d === $days ? ' active' : '';
+		printf(
+			'<a href="%s" class="menu-btn%s">%s</a>',
+			esc_url($url),
+			esc_attr($active),
+			esc_html(sprintf(__('Ostatnie %d dni', 'woocommerce'), $d))
+		);
+	}
+	echo '</div>';
+}, 20);
+
+// (opcjonalnie) lekki styl aktywnego przycisku
+add_action('wp_head', function () {
+	if (get_query_var('novelties')) {
+		echo '<style>.novelties-toolbar .button.active{font-weight:600;}</style>';
+	}
+});
+
+// 4) Fallback: gdy brak produktów — pokaż najnowsze (standardowy grid Woo)
+add_action('woocommerce_no_products_found', function () {
+	if (!get_query_var('novelties')) return;
+
+	echo '<div class="woocommerce-info" style="margin-bottom:1rem;">'
+		. esc_html__('Brak nowości w wybranym okresie — zobacz najnowsze produkty:', 'woocommerce')
+		. '</div>';
+
+	// standardowy shortcode WooCommerce (grid jak w Sklepie)
+	echo do_shortcode('[products orderby="date" order="DESC" limit="12" columns="4"]');
+}, 5);
+
+// 5) (opcjonalnie) zmiana tytułu strony
+add_filter('woocommerce_page_title', function ($title) {
+	if (get_query_var('novelties')) {
+		$days = (int) get_query_var('days');
+		if (!in_array($days, [30, 60, 90], true)) $days = 30;
+		return sprintf(__('Nowości – ostatnie %d dni', 'your-textdomain'), $days);
+	}
+	return $title;
+});
+
+/*--- SALE ---*/
+
+// 1) Rewrites + query var
+add_action('init', function () {
+	add_rewrite_tag('%onsale%', '([0-1])');
+	add_rewrite_rule('^wyprzedaz/?$', 'index.php?post_type=product&onsale=1', 'top');
+	add_rewrite_rule('^wyprzedaz/page/([0-9]+)/?$', 'index.php?post_type=product&onsale=1&paged=$matches[1]', 'top');
+});
+
+add_filter('query_vars', function ($vars) {
+	$vars[] = 'onsale';
+	return $vars;
+});
+
+// 2) Zawężenie wyników do produktów na promocji
+add_action('woocommerce_product_query', function ($q) {
+	if (!get_query_var('onsale')) {
+		return;
+	}
+
+	// WooCommerce helper – zwraca ID produktów będących „on sale”
+	$ids = wc_get_product_ids_on_sale(); // może zwracać puste
+
+	// Jeśli nic nie ma na promocji – ustaw tak, by loop był pusty (a my pokażemy fallback w hooku niżej)
+	if (empty($ids)) {
+		$q->set('post__in', [0]);
+		return;
+	}
+
+	// Ogranicz zapytanie do tych ID; reszta (sortowanie, paginacja) zostaje jak w Sklepie
+	$q->set('post__in', $ids);
+	// UWAGA: jeśli masz już jakieś post__in w $q (rzadkie), połącz je:
+	// $existing = (array) $q->get('post__in'); $q->set('post__in', array_values(array_intersect($existing ?: $ids, $ids)));
+}, 10, 1);
+
+// 3) (opcjonalnie) zmiana tytułu strony
+add_filter('woocommerce_page_title', function ($title) {
+	if (get_query_var('onsale')) {
+		return __('Wyprzedaż', 'your-textdomain');
+	}
+	return $title;
+});
+
+// 4) (opcjonalnie) breadcrumb „Wyprzedaż” zamiast „Sklep”
+add_filter('woocommerce_get_breadcrumb', function ($crumbs) {
+	if (!get_query_var('onsale')) {
+		return $crumbs;
+	}
+	// Podmień ostatni okruszek na „Wyprzedaż”
+	if (!empty($crumbs)) {
+		$crumbs[count($crumbs) - 1] = [__('Wyprzedaż', 'your-textdomain'), home_url('/wyprzedaz/')];
+	}
+	return $crumbs;
+});
+
+// 5) Fallback: gdy brak produktów na wyprzedaży – pokaż najnowsze (standardowy grid Woo)
+add_action('woocommerce_no_products_found', function () {
+	if (!get_query_var('onsale')) {
+		return;
+	}
+
+	echo '<div class="woocommerce-info" style="margin-bottom:1rem;">'
+		. esc_html__('Aktualnie brak produktów na wyprzedaży — zobacz najnowsze produkty:', 'woocommerce')
+		. '</div>';
+
+	// Grid WooCommerce – wygląda jak na Sklepie
+	echo do_shortcode('[products orderby="date" order="DESC" limit="12" columns="4"]');
+}, 5);
+
+// Usuń kategorie i tagi z meta produktu na stronie produktu
+add_action('template_redirect', function () {
+	if (is_product()) {
+		remove_action('woocommerce_product_meta_end', 'woocommerce_template_single_meta');
+		add_action('woocommerce_product_meta_end', function () {
+			global $product;
+
+			if (wc_product_sku_enabled() && ($sku = $product->get_sku())) {
+				echo '<span class="sku_wrapper">';
+				echo '<strong>Kod produktu:</strong> ';
+				echo '<span class="sku" itemprop="sku">' . esc_html($sku) . '</span>';
+				echo '</span>';
+			}
+		});
+	}
+});
+
+/*--- SKU EDIT ---*/
+
+// Single product: pokaż w meta TYLKO SKU z etykietą "Kod produktu:"
+add_action('wp', function () {
+	if (! is_product()) {
+		return;
+	}
+
+	// Usuń domyślne meta (SKU + kategorie + tagi)
+	remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+
+	// Wstaw własne meta w tym samym miejscu (prio 40)
+	add_action('woocommerce_single_product_summary', function () {
+		global $product;
+		if (! $product instanceof \WC_Product) {
+			return;
+		}
+
+		// Czy SKU jest włączone i dostępne?
+		if (wc_product_sku_enabled()) {
+			$sku = $product->get_sku();
+
+			// Jeśli SKU jest puste, nic nie pokazujemy
+			if (! $sku) {
+				return;
+			}
+
+			echo '<div class="product_meta">';
+			echo '  <span class="sku_wrapper">';
+			echo '    <strong>' . esc_html__('Kod produktu:', 'your-textdomain') . '</strong> ';
+			echo '    <span class="sku" itemprop="sku">' . esc_html($sku) . '</span>';
+			echo '  </span>';
+			echo '</div>';
+		}
+	}, 40);
+});
+
+
+
