@@ -34,7 +34,7 @@ defined('ABSPATH') || exit;
   @endif
 
   <h5 class="woocommerce-loop-product__title">
-    <a href="{{ get_permalink() }}">{{ get_the_title() }}</a>
+    <a href="{{ get_permalink() }}">{!! get_the_title() !!}</a>
   </h5>
 
   @php do_action('woocommerce_after_shop_loop_item_title') @endphp
