@@ -7,7 +7,7 @@ defined('ABSPATH') || exit;
 <li {!! wc_product_class('', $product) !!}>
   <figure class="woocommerce-product-figure relative">
     @if($product && $product->is_on_sale())
-      <span class="onsale">PROMOCJA22</span>
+      <span class="onsale">Promocja!</span>
     @endif
 
     <a href="{{ get_permalink() }}">
