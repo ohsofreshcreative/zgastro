@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Blocks\\About' => $baseDir . '/app/Blocks/About.php',
     'App\\Blocks\\Accordion' => $baseDir . '/app/Blocks/Accordion.php',
     'App\\Blocks\\AreaBlock' => $baseDir . '/app/Blocks/AreaBlock.php',
     'App\\Blocks\\Baner' => $baseDir . '/app/Blocks/Baner.php',
@@ -32,11 +33,14 @@ return array(
     'App\\Blocks\\Image' => $baseDir . '/app/Blocks/Image.php',
     'App\\Blocks\\Jobs' => $baseDir . '/app/Blocks/Jobs.php',
     'App\\Blocks\\Map' => $baseDir . '/app/Blocks/Map.php',
+    'App\\Blocks\\Mission' => $baseDir . '/app/Blocks/Mission.php',
     'App\\Blocks\\Numbers' => $baseDir . '/app/Blocks/Numbers.php',
     'App\\Blocks\\OfferCardsBlock' => $baseDir . '/app/Blocks/OfferCardsBlock.php',
     'App\\Blocks\\Offers' => $baseDir . '/app/Blocks/Offers.php',
     'App\\Blocks\\Overlap' => $baseDir . '/app/Blocks/Overlap.php',
     'App\\Blocks\\Proces' => $baseDir . '/app/Blocks/Proces.php',
+    'App\\Blocks\\ProductGrid' => $baseDir . '/app/Blocks/ProductGrid.php',
+    'App\\Blocks\\Promo' => $baseDir . '/app/Blocks/Promo.php',
     'App\\Blocks\\Recent' => $baseDir . '/app/Blocks/Recent.php',
     'App\\Blocks\\Reviews' => $baseDir . '/app/Blocks/Reviews.php',
     'App\\Blocks\\Slides' => $baseDir . '/app/Blocks/Slides.php',
@@ -46,6 +50,7 @@ return array(
     'App\\Blocks\\TextTiles' => $baseDir . '/app/Blocks/TextTiles.php',
     'App\\Blocks\\ThreeColumns' => $baseDir . '/app/Blocks/ThreeColumns.php',
     'App\\Blocks\\Tiles' => $baseDir . '/app/Blocks/Tiles.php',
+    'App\\Blocks\\Title' => $baseDir . '/app/Blocks/Title.php',
     'App\\Blocks\\TwoColumns' => $baseDir . '/app/Blocks/TwoColumns.php',
     'App\\Blocks\\Video' => $baseDir . '/app/Blocks/Video.php',
     'App\\Blocks\\Who' => $baseDir . '/app/Blocks/Who.php',

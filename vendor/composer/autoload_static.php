@@ -154,8 +154,6 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
             'Dotenv\\' => 7,
             'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Lexer\\' => 22,
-            'Database\\Seeders\\' => 17,
-            'Database\\Factories\\' => 19,
         ),
         'C' => 
         array (
@@ -373,10 +371,10 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/support',
-            1 => __DIR__ . '/..' . '/illuminate/collections',
-            2 => __DIR__ . '/..' . '/illuminate/conditionable',
-            3 => __DIR__ . '/..' . '/illuminate/macroable',
+            0 => __DIR__ . '/..' . '/illuminate/collections',
+            1 => __DIR__ . '/..' . '/illuminate/conditionable',
+            2 => __DIR__ . '/..' . '/illuminate/macroable',
+            3 => __DIR__ . '/..' . '/illuminate/support',
         ),
         'Illuminate\\Session\\' => 
         array (
@@ -498,14 +496,6 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/src',
         ),
-        'Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laravel/pint/database/seeders',
-        ),
-        'Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laravel/pint/database/factories',
-        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
@@ -525,11 +515,11 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
-            1 => __DIR__ . '/..' . '/laravel/pint/app',
         ),
     );
 
     public static $classMap = array (
+        'App\\Blocks\\About' => __DIR__ . '/../..' . '/app/Blocks/About.php',
         'App\\Blocks\\Accordion' => __DIR__ . '/../..' . '/app/Blocks/Accordion.php',
         'App\\Blocks\\AreaBlock' => __DIR__ . '/../..' . '/app/Blocks/AreaBlock.php',
         'App\\Blocks\\Baner' => __DIR__ . '/../..' . '/app/Blocks/Baner.php',
@@ -556,11 +546,14 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'App\\Blocks\\Image' => __DIR__ . '/../..' . '/app/Blocks/Image.php',
         'App\\Blocks\\Jobs' => __DIR__ . '/../..' . '/app/Blocks/Jobs.php',
         'App\\Blocks\\Map' => __DIR__ . '/../..' . '/app/Blocks/Map.php',
+        'App\\Blocks\\Mission' => __DIR__ . '/../..' . '/app/Blocks/Mission.php',
         'App\\Blocks\\Numbers' => __DIR__ . '/../..' . '/app/Blocks/Numbers.php',
         'App\\Blocks\\OfferCardsBlock' => __DIR__ . '/../..' . '/app/Blocks/OfferCardsBlock.php',
         'App\\Blocks\\Offers' => __DIR__ . '/../..' . '/app/Blocks/Offers.php',
         'App\\Blocks\\Overlap' => __DIR__ . '/../..' . '/app/Blocks/Overlap.php',
         'App\\Blocks\\Proces' => __DIR__ . '/../..' . '/app/Blocks/Proces.php',
+        'App\\Blocks\\ProductGrid' => __DIR__ . '/../..' . '/app/Blocks/ProductGrid.php',
+        'App\\Blocks\\Promo' => __DIR__ . '/../..' . '/app/Blocks/Promo.php',
         'App\\Blocks\\Recent' => __DIR__ . '/../..' . '/app/Blocks/Recent.php',
         'App\\Blocks\\Reviews' => __DIR__ . '/../..' . '/app/Blocks/Reviews.php',
         'App\\Blocks\\Slides' => __DIR__ . '/../..' . '/app/Blocks/Slides.php',
@@ -570,6 +563,7 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'App\\Blocks\\TextTiles' => __DIR__ . '/../..' . '/app/Blocks/TextTiles.php',
         'App\\Blocks\\ThreeColumns' => __DIR__ . '/../..' . '/app/Blocks/ThreeColumns.php',
         'App\\Blocks\\Tiles' => __DIR__ . '/../..' . '/app/Blocks/Tiles.php',
+        'App\\Blocks\\Title' => __DIR__ . '/../..' . '/app/Blocks/Title.php',
         'App\\Blocks\\TwoColumns' => __DIR__ . '/../..' . '/app/Blocks/TwoColumns.php',
         'App\\Blocks\\Video' => __DIR__ . '/../..' . '/app/Blocks/Video.php',
         'App\\Blocks\\Who' => __DIR__ . '/../..' . '/app/Blocks/Who.php',
