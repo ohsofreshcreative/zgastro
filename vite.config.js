@@ -5,15 +5,15 @@ import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin'
 
 export default defineConfig({
   server: {
-    host: 'kreacja.local', // 🔁 <-- zmiana z 'localhost'
+    host: 'zgastro.local', // 🔁 <-- zmiana z 'localhost'
     port: 5173,
     strictPort: true,
     cors: true,
-    origin: 'http://kreacja.local:5173',
+    origin: 'http://zgastro.local:5173',
 
     hmr: {
       protocol: 'ws',
-      host: 'kreacja.local', // 🔁 <-- tu też!
+      host: 'zgastro.local', // 🔁 <-- tu też!
       port: 5173,
     },
   },
