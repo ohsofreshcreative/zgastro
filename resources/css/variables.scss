@@ -91,7 +91,32 @@ body {
 /*--- !ROOT ---*/
 
 :root {
- 
+  --body: #211c14 !important;
+  --primary: blue;
+  --p-hover: #97805a;
+  --p-100: #f0ebe1;
+  --p-200: #e6ddce;
+  --p-300: #daccb5;
+  --p-400: #cebc9d;
+  --p-500: #c1ab84;
+  --p-600: #97805a;
+  --p-700: #796748;
+  --p-800: #5a4d36;
+  --p-900: #3c3324;
+  --p-dark: #241f16;
+
+  --secondary: #f2ce90;
+  --s-hover: #caac78;
+  --s-100: #fcf5e9;
+  --s-200: #fbefda;
+  --s-300: #f8e6c7;
+  --s-400: #f6deb5;
+  --s-500: #f4d6a2;
+  --s-600: #caac78;
+  --s-700: #a18960;
+  --s-800: #796748;
+  --s-900: #514530;
+  --s-dark: #30291d;
 
   --swiper-theme-color: #f2ce90 !important;
 
