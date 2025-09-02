@@ -39,8 +39,8 @@ class CategoryPosts extends Block
             ->addTab('Treści', ['placement' => 'top'])
             ->addGroup('posts_settings', ['label' => ''])
             
-			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
+			->addText('txt', ['label' => 'Śródtytuł'])
             ->addTaxonomy('category', [
                 'label' => 'Wybierz kategorię',
                 'taxonomy' => 'category',

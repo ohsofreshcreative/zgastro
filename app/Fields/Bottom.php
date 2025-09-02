@@ -34,10 +34,11 @@ class Bottom extends Field
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
-			->addText('phone', ['label' => 'Telefon'])
-			->addText('mail', ['label' => 'Adres e-mail'])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
+			])
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/

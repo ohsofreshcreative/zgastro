@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Reviews extends Block
+class Tabs extends Block
 {
-	public $name = 'Slider - Opinie';
-	public $description = 'reviews';
-	public $slug = 'reviews';
+	public $name = 'Zakładki';
+	public $description = 'tabs';
+	public $slug = 'tabs';
 	public $category = 'formatting';
-	public $icon = 'format-quote';
-	public $keywords = ['reviews', 'kafelki'];
+	public $icon = 'ellipsis';
+	public $keywords = ['tabs', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,66 +22,84 @@ class Reviews extends Block
 
 	public function fields()
 	{
-		$reviews = new FieldsBuilder('reviews');
+		$tabs = new FieldsBuilder('tabs');
 
-		$reviews
-			->setLocation('block', '==', 'acf/reviews') // ważne!
+		$tabs
+			->setLocation('block', '==', 'acf/tabs') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Slider - Opinie',
+				'label' => 'Zakładki',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('g_reviews', ['label' => ''])
-
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
+			->addGroup('g_tabs', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
 			->addText('txt', ['label' => 'Opis'])
+			->endGroup()
 
-			->addRepeater('repeater', [
-				'label' => 'Slider - Opinie',
+			->addTab('Kafelki', ['placement' => 'top'])
+			->addRepeater('r_tabs', [
+				'label' => 'Zakładki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
-				'max' => 15,
+				'max' => 4,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
+			->addText('tab', [
+				'label' => 'Etykieta zakładki (lewy panel)',
+				'required' => 1,
+			])
+			->addText('title', [
+				'label' => 'Nagłówek treści (prawy panel)',
+			])
+			->addWysiwyg('txt', [
+				'label' => 'Opis (WYSIWYG)',
+				'tabs' => 'all',
+				'media_upload' => 1,
+				'delay' => 0,
+			])
+			->addImage('image', [
+				'label' => 'Obraz treści (opcjonalnie)',
+				'return_format' => 'array',
 				'preview_size' => 'medium',
 			])
-			->addTextarea('card_txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
-			])
-			->addText('card_name', [
-				'label' => 'Klient',
-			])
 			->endRepeater()
-
-			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+
+			->addText('id', [
+				'label' => 'ID',
+			])
+			->addText('class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('nomt', [
 				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -111,17 +129,20 @@ class Reviews extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $reviews;
+		return $tabs;
 	}
 
 	public function with()
 	{
 		return [
-			'g_reviews' => get_field('g_reviews'),
-			'reviews' => get_field('g_reviews')['repeater'] ?? [],
+			'g_tabs' => get_field('g_tabs'),
+			'r_tabs' => get_field('r_tabs'),
+			'id' => get_field('id'),
+			'class' => get_field('class'),
 			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
+			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
 			'lightbg' => get_field('lightbg'),
 			'graybg' => get_field('graybg'),
 			'whitebg' => get_field('whitebg'),

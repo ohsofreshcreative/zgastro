@@ -147,7 +147,7 @@ add_action('widgets_init', function () {
 	$defaultConfig = [
 		'before_widget' => '<section class="footer_widget widget %1$s %2$s">',
 		'after_widget' => '</section>',
-		'before_title' => '<h5 class="widget-title primary mb-4 flex">',
+		'before_title' => '<h5 class="widget-title text-p-lighter mb-4 flex">',
 		'after_title' => '</h5>',
 	];
 
@@ -184,26 +184,65 @@ add_action('widgets_init', function () {
 
 /*--- PRODUCT SHORT DESC ---*/
 // Przenieś krótki opis pod Add to Cart i meta
-add_action('after_setup_theme', function () {
-	remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
-	add_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 45);
+/* add_action('after_setup_theme', function () {
+	remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 10);
+	add_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
 });
-
+ */
 /*--- ADD ATRIBUTES --*/
 
-add_action('woocommerce_single_product_summary', function () {
+/* add_action('woocommerce_single_product_summary', function () {
 	global $product;
 	if (!$product instanceof \WC_Product) {
 		return;
 	}
-
-
 	echo '<section class="product-attributes mt-8 pt-8">';
 	echo '<h5 class="mb-4">Szczegóły</h5>';
 	// To buduje $product_attributes i samo wczytuje poprawny template
 	wc_display_product_attributes($product);
 	echo '</section>';
-}, 46);
+}, 20);
+ */
+/*--- PRICE ABOVE ADD TO CART ---*/
+
+add_filter('woocommerce_get_price_html', function ($price, $product) {
+    if (!empty($price)) {
+        $price = '<span class="price-label">Cena: </span>' . $price;
+    }
+    return $price;
+}, 10, 2);
+
+add_filter('woocommerce_variable_price_html', function ($price, $product) {
+	// zwróć pusty string => Woo nie pokaże przedziału
+	return '';
+}, 10, 2);
+
+// Przenieś cenę nad przycisk Add to cart
+add_action('after_setup_theme', function () {
+	// Usuń domyślną pozycję ceny (10)
+	remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
+
+	// Wstaw cenę tuż nad przyciskiem Add to cart (priorytet 9, żeby było nad 10)
+	add_action('woocommerce_before_add_to_cart_button', 'woocommerce_template_single_price', 9);
+});
+
+/*--- HIDE RESET VARIATIONS */
+
+// Miniatury galerii 150x150, BEZ przycinania
+add_filter('woocommerce_get_image_size_gallery_thumbnail', function ($size) {
+    return [
+        'width'  => 150,
+        'height' => 150,
+        'crop'   => 0, // ważne: bez croppa
+    ];
+}, 10);
+
+// Upewnij się, że Woo używa właśnie tego rozmiaru
+add_filter('woocommerce_gallery_thumbnail_size', function () {
+    return 'woocommerce_gallery_thumbnail';
+});
+
+
 
 /*--- HIDE RESET VARIATIONS */
 
@@ -237,7 +276,7 @@ add_action('acf/init', function () {
 		'fields' => [
 			[
 				'key' => 'field_product_extras',
-				'label' => 'Sekcje (powtarzalne)',
+				'label' => 'Sekcje',
 				'name' => 'product_extras', // <- repeater
 				'type' => 'repeater',
 				'layout' => 'table',
@@ -245,21 +284,22 @@ add_action('acf/init', function () {
 				'button_label' => 'Dodaj sekcję',
 				'sub_fields' => [
 					[
-						'key' => 'field_product_extras_image',
-						'label' => 'Obraz',
-						'name' => 'image',
-						'type' => 'image',
-						'return_format' => 'array',
-						'preview_size' => 'thumbnail',
-						'library' => 'all',
+						'key' => 'field_product_extras_header',
+						'label' => 'Nagłówek',
+						'name' => 'header',
+						'type' => 'text',
+						'wrapper' => ['width' => 35],
 					],
 					[
 						'key' => 'field_product_extras_text',
 						'label' => 'Tekst',
 						'name' => 'text',
-						'type' => 'textarea',
-						'rows' => 3,
-						'new_lines' => 'br',
+						'type' => 'wysiwyg',
+						'tabs' => 'all', 
+						'toolbar' => 'full', 
+						'media_upload' => 0,  
+						'delay' => 1,
+						'wrapper' => ['width' => 65],
 					],
 				],
 			],
@@ -287,7 +327,7 @@ add_action('acf/init', function () {
 
 add_action('woocommerce_single_product_summary', function () {
 	echo \Roots\view('woocommerce/single-product/acf-extras')->render();
-}, 15);
+}, 25);
 
 /*--- AJAX CART ---*/
 
@@ -556,6 +596,3 @@ add_action('wp', function () {
 		}
 	}, 40);
 });
-
-
-

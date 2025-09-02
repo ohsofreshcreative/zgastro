@@ -1,54 +1,56 @@
 @php
 $sectionClass = '';
-$sectionClass .= $flip ? ' order-flip' : '';
-$sectionClass .= $wide ? ' wide' : '';
-$sectionClass .= $nomt ? ' !mt-0' : '';
-$sectionClass .= $gap ? ' wider-gap' : '';
-$sectionClass .= $lightbg ? ' section-light' : '';
-$sectionClass .= $graybg ? ' section-gray' : '';
-$sectionClass .= $whitebg ? ' section-white' : '';
-$sectionClass .= $brandbg ? ' section-brand' : '';
+$sectionClass .= !empty($flip) ? ' order-flip' : '';
+$sectionClass .= !empty($wide) ? ' wide' : '';
+$sectionClass .= !empty($nomt) ? ' !mt-0' : '';
+$sectionClass .= !empty($gap) ? ' wider-gap' : '';
+$sectionClass .= !empty($lightbg) ? ' section-light' : '';
+$sectionClass .= !empty($graybg) ? ' section-gray' : '';
+$sectionClass .= !empty($whitebg) ? ' section-white' : '';
+$sectionClass .= !empty($brandbg) ? ' section-brand' : '';
+
+$gTitle = $g_cards['title'] ?? '';
+$gImage = $g_cards['image'] ?? null;
+$gContent = $g_cards['content'] ?? '';
+
+$items = is_array($r_cards ?? null) ? $r_cards : [];
+$itemCount = count($items);
+
+$cols = max(1, min($itemCount, 4));
+$gridClass = $itemCount > 1 ? ('grid-cols-1 lg:grid-cols-' . $cols) : 'grid-cols-1';
 @endphp
 
-<section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="cards -smt {{ $sectionClass }} {{ $class }}">
+<section data-gsap-anim="section" @if(!empty($id)) id="{{ $id }}" @endif class="cards -smt {{ $sectionClass }} {{ $class ?? '' }}">
 	<div class="__wrapper c-main">
-		<div class="">
 
-			@if (!empty($tiles['title']))
-			<h2 class="__before mb-10">{{ strip_tags($tiles['title']) }}</h2>
-			@endif
+		<div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] items-center gap-8 lg:gap-20">
+			<img class="mb-6 max-w-full img-l rounded-xl" src="{{ $gImage['url'] }}" alt="{{ $gImage['alt'] ?? '' }}" loading="lazy" decoding="async" width="{{ $gImage['width'] ?? '' }}" height="{{ $gImage['height'] ?? '' }}">
+			<div>
+				<h2 class="mb-6">{{ strip_tags($gTitle) }}</h2>
+				<div class=max-w-none">{!! $gContent !!}</div>
+			</div>
+		</div>
 
-			@if (!empty($tiles['repeater']))
+		@if($itemCount)
+		<div class="grid {{ $gridClass }} gap-8 -mt-20">
+			@foreach($items as $item)
 			@php
-			$itemCount = count($tiles['repeater']);
-			$gridCols = $itemCount;
-
-			if ($itemCount == 4) {
-			$gridCols = 4;
-			} elseif ($itemCount > 4) {
-			$gridCols = 2; // Or handle it differently if there are more than 4 items
-			}
-
-			$gridClass = 'grid-cols-1'; // Default to 1 column
-			if ($gridCols > 1) {
-			$gridClass = 'grid-cols-1 lg:grid-cols-' . $gridCols;
-			}
+			$img = $item['card_image'] ?? null;
+			$title = $item['card_title'] ?? '';
+			$txt = $item['card_txt'] ?? '';
 			@endphp
 
-			<div class="grid {{ $gridClass }} gap-8">
-				@foreach ($tiles['repeater'] as $item)
-				<div class="__card relative flex items-start gap-4">
-					<img class="mb-6 w-[40px]" src="{{ $item['card_image']['url'] }}" alt="{{ $item['card_image']['alt'] ?? '' }}" />
-					<div>
-						<b class="m-title">{{ $item['card_title'] }}</b>
-						<p class="text-lg mt-2">{{ $item['card_txt'] }}</p>
-					</div>
+			<div class="__card relative b-shadow p-6 rounded-xl bg-white">
+				<img class="mb-2 w-[40px] h-auto shrink-0" src="{{ $img['url'] }}" alt="{{ $img['alt'] ?? '' }}" loading="lazy" decoding="async" width="{{ $img['width'] ?? '' }}" height="{{ $img['height'] ?? '' }}">
+
+				<div>
+					<b class="m-title block">{{ $title }}</b>
+					<div class="text-lg mt-2">{!! $txt !!}</div>
 				</div>
-				@endforeach
 			</div>
-			@endif
-
+			@endforeach
 		</div>
-	</div>
+		@endif
 
+	</div>
 </section>

@@ -37,19 +37,30 @@ class Proces extends Block
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treść', ['placement' => 'top'])
-			->addGroup('proces', ['label' => ''])
+			->addGroup('g_proces', ['label' => ''])
 
 			->addText('title', ['label' => 'Tytuł'])
+			->addText('txt', ['label' => 'Opis'])
 
-			->addRepeater('repeater', [
+			->addRepeater('r_proces', [
 				'label' => 'Proces',
-				'layout' => 'row', // 'row', 'block', albo 'table'
-				'min' => 5,
-				'min' => 5,
-				'button_label' => 'Dodaj element oferty'
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 3,
+				'min' => 3,
+				'button_label' => 'Dodaj element'
 			])
-			->addText('proces_title', [
-				'label' => 'Krok',
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
+			->addText('title', [
+				'label' => 'Nagłówek',
+			])
+			->addTextarea('txt', [
+				'label' => 'Opis',
+				'rows' => 4,
+				'new_lines' => 'br',
 			])
 			->endRepeater()
 			->endGroup()
@@ -84,7 +95,8 @@ class Proces extends Block
 	public function with()
 	{
 		return [
-			'proces' => get_field('proces'),
+			'g_proces' => get_field('g_proces'),
+			'r_proces' => get_field('r_proces'),
 			'flip' => get_field('flip'),
 			'lightbg' => get_field('lightbg'),
 			'nomt' => get_field('nomt'),

@@ -18,14 +18,14 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
 			@if (!empty($textimg['image']))
 			<div data-gsap-element="img" class="__img order1">
-				<img class="object-cover w-full __img img-xl" src="{{ $textimg['image']['url'] }}" alt="{{ $textimg['image']['alt'] ?? '' }}">
+				<img class="object-cover w-full __img img-xl img-radius" src="{{ $textimg['image']['url'] }}" alt="{{ $textimg['image']['alt'] ?? '' }}">
 			</div>
 			@endif
 
-			<div class="__content order2">
-				<h2 data-gsap-element="header" class="">{{ $textimg['title'] }}</h2>
+			<div class="__content flex flex-col justify-center bg-shade-light b-radius order2 p-10 h-full">
+				<h2 data-gsap-element="header" class="m-title">{{ $textimg['title'] }}</h2>
 
-				<div data-gsap-element="txt" class="mt-2">
+				<div data-gsap-element="txt" class="">
 					{!! $textimg['content'] !!}
 				</div>
 

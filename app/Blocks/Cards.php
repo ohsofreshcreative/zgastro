@@ -37,11 +37,26 @@ class Cards extends Block
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
+			->addGroup('g_cards', ['label' => ''])
 
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
 			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
 
-			->addRepeater('repeater', [
+			->endGroup()
+
+			->addTab('Kafelki', ['placement' => 'top'])
+
+			->addRepeater('r_cards', [
 				'label' => 'Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
@@ -62,8 +77,6 @@ class Cards extends Block
 				'new_lines' => 'br',
 			])
 			->endRepeater()
-
-			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -130,7 +143,8 @@ class Cards extends Block
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
+			'g_cards' => get_field('g_cards'),
+			'r_cards' => get_field('r_cards'),
 			'id' => get_field('id'),
 			'class' => get_field('class'),
 			'flip' => get_field('flip'),

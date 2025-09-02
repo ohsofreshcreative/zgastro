@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Reviews extends Block
+class Triple extends Block
 {
-	public $name = 'Slider - Opinie';
-	public $description = 'reviews';
-	public $slug = 'reviews';
+	public $name = 'Trzy kafelki';
+	public $description = 'triple';
+	public $slug = 'triple';
 	public $category = 'formatting';
-	public $icon = 'format-quote';
-	public $keywords = ['reviews', 'kafelki'];
+	public $icon = 'images-alt';
+	public $keywords = ['triple', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,66 +22,85 @@ class Reviews extends Block
 
 	public function fields()
 	{
-		$reviews = new FieldsBuilder('reviews');
+		$triple = new FieldsBuilder('triple');
 
-		$reviews
-			->setLocation('block', '==', 'acf/reviews') // ważne!
+		$triple
+			->setLocation('block', '==', 'acf/triple') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Slider - Opinie',
+				'label' => 'Trzy kafelki',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('g_reviews', ['label' => ''])
+			->addGroup('g_triple', ['label' => ''])
 
+			->addText('title', ['label' => 'Tytuł'])
+			->addTextArea('txt', [
+				'label' => 'Opis',
+				'rows' => 2,
+			])
+
+			->endGroup()
+
+			->addTab('Kafelki', ['placement' => 'top'])
+
+			->addRepeater('r_triple', [
+				'label' => 'Kafelki',
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 1,
+				'max' => 4,
+				'button_label' => 'Dodaj kafelek'
+			])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('title', ['label' => 'Tytuł'])
-			->addText('txt', ['label' => 'Opis'])
-
-			->addRepeater('repeater', [
-				'label' => 'Slider - Opinie',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'max' => 15,
-				'button_label' => 'Dodaj kafelek'
+			->addText('title', [
+				'label' => 'Nagłówek',
 			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addTextarea('card_txt', [
+			->addTextarea('txt', [
 				'label' => 'Opis',
 				'rows' => 4,
 				'new_lines' => 'br',
 			])
-			->addText('card_name', [
-				'label' => 'Klient',
-			])
 			->endRepeater()
-
-			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+
+			->addText('id', [
+				'label' => 'ID',
+			])
+			->addText('class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('nomt', [
 				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -111,17 +130,20 @@ class Reviews extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $reviews;
+		return $triple;
 	}
 
 	public function with()
 	{
 		return [
-			'g_reviews' => get_field('g_reviews'),
-			'reviews' => get_field('g_reviews')['repeater'] ?? [],
+			'g_triple' => get_field('g_triple'),
+			'r_triple' => get_field('r_triple'),
+			'id' => get_field('id'),
+			'class' => get_field('class'),
 			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
+			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
 			'lightbg' => get_field('lightbg'),
 			'graybg' => get_field('graybg'),
 			'whitebg' => get_field('whitebg'),

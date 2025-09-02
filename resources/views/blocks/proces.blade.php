@@ -9,25 +9,28 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 	<div class="__wrapper c-main-wide">
 		<div class="relative">
 
-			@if (!empty($proces['title']))
-			<h2 class="__txt mb-10 font-medium">{{ strip_tags($proces['title']) }}</h2>
+			@if (!empty($g_proces['title']))
+			<h2 class="text-center m-title">{{ strip_tags($g_proces['title']) }}</h2>
 			@endif
+			<div class="text-center">{{ strip_tags($g_proces['txt']) }}</div>
 
-			@if (!empty($proces['repeater']))
-			<div class="gap-8 grid grid-cols-1 lg:grid-cols-5">
+			@if (!empty($g_proces['r_proces']))
+			<div class="gap-8 grid grid-cols-1 lg:grid-cols-3 mt-10">
 
-				@foreach ($proces['repeater'] as $item)
-				<div data-gsap-element="stagger" class="flex flex-col z-10">
-					<div class="__nr rounded-full flex justify-center items-center bg-primary w-10 h-10">
+				@foreach ($g_proces['r_proces'] as $item)
+				<div data-gsap-element="stagger" class="__card relative flex gap-6 bg-white b-radius b-shadow z-10 p-10 pt-16">
+					<div class="__nr absolute -top-4 flex items-center justify-center w-10 h-10 rounded-full bg-yellow text-2xl font-bold text-third">
 						{{ $loop->iteration }}
 					</div>
-					<h6 class="__content mt-6">{{ $item['proces_title'] }}</h6>
-					<div class="w-8 h-8 rounded-full border-2 b-border-4 bg-white z-10 mt-10"></div>
+					<img class="m-img" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
+					<div>
+						<h5 class="m-title block">{{ $item['title'] }}</h5>
+						<div class="text-lg mt-2">{!! $item['txt'] !!}</div>
+					</div>
 				</div>
 
 				@endforeach
 			</div>
-			<div class="__line absolute bg-primary z-0 origin-left scale-x-0"></div>
 			@endif
 
 		</div>

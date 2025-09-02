@@ -7,7 +7,10 @@
 
 @import '../css/blocks/hero.scss';
 @import '../css/blocks/hero-offer.scss';
+@import '../css/blocks/tabs.scss';
 @import '../css/blocks/cards.scss';
+@import '../css/blocks/reviews.scss';
+@import '../css/blocks/proces.scss';
 @import '../css/blocks/text-image.scss';
 @import '../css/blocks/area-block.scss';
 @import '../css/blocks/cases.scss';

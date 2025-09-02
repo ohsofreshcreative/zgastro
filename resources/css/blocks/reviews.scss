@@ -1,0 +1,64 @@
+.reviews {
+
+  img.absolute {
+    width: 30vw;
+    margin-left: calc(-50vw + 50%);
+    min-width: 544px;
+  }
+
+  .__arrows {
+    width: max-content;
+    right: 0;
+    top: -80px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: unset;
+    width: calc(var(--swiper-navigation-size) / 44 * 27);
+    height: var(--swiper-navigation-size);
+    margin-top: calc(0px -(var(--swiper-navigation-size) / 2));
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background-color: var(--bg-yellow);
+    border: none;
+
+    path {
+      fill: var(--third);
+    }
+  }
+
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: var(--bg-yellow-hover);
+
+    path {
+      fill: var(--t-800);
+    }
+  }
+
+  .swiper-button-next svg,
+  .swiper-button-prev svg {
+    width: 24px;
+    height: 22px;
+  }
+
+  .swiper-button-next {
+    order: 2;
+  }
+
+  .swiper-button-prev {
+    transform: scaleX(-1);
+    order: 1;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    content: '';
+  }
+}

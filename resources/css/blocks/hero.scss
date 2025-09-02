@@ -1,20 +1,18 @@
 .hero {
-  z-index: 1;
-  flex-flow: column;
-  justify-content: center;
-  height: 100%;
-  min-height: 730px;
-  display: flex;
-  position: relative;
-  background: linear-gradient(to right, #e6ddce 0 50%, #f0ebe1 50% 100%);
-  .__img {
-    aspect-ratio: 72 / 73;
-    width: 100%;
-    max-width: 720px;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    inset: 0%;
+  .__arrow {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    outline: 16px solid var(--bg);
+  }
+
+  .__arrow:hover {
+    background-color: var(--bg-yellow-hover);
+  }
+
+  .__arrow:focus {
+    background-color: var(--shade);
   }
 }

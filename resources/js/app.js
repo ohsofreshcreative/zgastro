@@ -22,8 +22,6 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-
 /*--- ALPINE ---*/
 
 import Alpine from 'alpinejs';
@@ -172,8 +170,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
-
 
 /*--- WHITE SVG ANIMATION ---*/
 
