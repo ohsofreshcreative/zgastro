@@ -399,6 +399,10 @@ body {
   font-family: var(--body);
 }
 
+p {
+	margin-bottom:8px;
+}
+
 p:last-of-type {
   margin-bottom: 0 !important;
 }
@@ -412,6 +416,11 @@ a {
 a:hover {
   color: var(--primary);
   transition: all 0.2s ease-out;
+}
+
+.__content ul {
+	list-style: disc;
+	margin-left:24px;
 }
 
 h1,

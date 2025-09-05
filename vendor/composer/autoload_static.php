@@ -154,6 +154,8 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
             'Dotenv\\' => 7,
             'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Lexer\\' => 22,
+            'Database\\Seeders\\' => 17,
+            'Database\\Factories\\' => 19,
         ),
         'C' => 
         array (
@@ -371,10 +373,10 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/collections',
-            1 => __DIR__ . '/..' . '/illuminate/conditionable',
-            2 => __DIR__ . '/..' . '/illuminate/macroable',
-            3 => __DIR__ . '/..' . '/illuminate/support',
+            0 => __DIR__ . '/..' . '/illuminate/support',
+            1 => __DIR__ . '/..' . '/illuminate/collections',
+            2 => __DIR__ . '/..' . '/illuminate/conditionable',
+            3 => __DIR__ . '/..' . '/illuminate/macroable',
         ),
         'Illuminate\\Session\\' => 
         array (
@@ -496,6 +498,14 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/src',
         ),
+        'Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/database/seeders',
+        ),
+        'Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/database/factories',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
@@ -515,6 +525,7 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
+            1 => __DIR__ . '/..' . '/laravel/pint/app',
         ),
     );
 
@@ -557,6 +568,8 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'App\\Blocks\\Recent' => __DIR__ . '/../..' . '/app/Blocks/Recent.php',
         'App\\Blocks\\Reviews' => __DIR__ . '/../..' . '/app/Blocks/Reviews.php',
         'App\\Blocks\\Slides' => __DIR__ . '/../..' . '/app/Blocks/Slides.php',
+        'App\\Blocks\\Story' => __DIR__ . '/../..' . '/app/Blocks/Story.php',
+        'App\\Blocks\\Tabs' => __DIR__ . '/../..' . '/app/Blocks/Tabs.php',
         'App\\Blocks\\Team' => __DIR__ . '/../..' . '/app/Blocks/Team.php',
         'App\\Blocks\\Template' => __DIR__ . '/../..' . '/app/Blocks/Template.php',
         'App\\Blocks\\TextImage' => __DIR__ . '/../..' . '/app/Blocks/TextImage.php',
@@ -564,6 +577,7 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'App\\Blocks\\ThreeColumns' => __DIR__ . '/../..' . '/app/Blocks/ThreeColumns.php',
         'App\\Blocks\\Tiles' => __DIR__ . '/../..' . '/app/Blocks/Tiles.php',
         'App\\Blocks\\Title' => __DIR__ . '/../..' . '/app/Blocks/Title.php',
+        'App\\Blocks\\Triple' => __DIR__ . '/../..' . '/app/Blocks/Triple.php',
         'App\\Blocks\\TwoColumns' => __DIR__ . '/../..' . '/app/Blocks/TwoColumns.php',
         'App\\Blocks\\Video' => __DIR__ . '/../..' . '/app/Blocks/Video.php',
         'App\\Blocks\\Who' => __DIR__ . '/../..' . '/app/Blocks/Who.php',
@@ -577,6 +591,7 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'App\\Providers\\ThemeServiceProvider' => __DIR__ . '/../..' . '/app/Providers/ThemeServiceProvider.php',
         'App\\View\\Composers\\App' => __DIR__ . '/../..' . '/app/View/Composers/App.php',
         'App\\View\\Composers\\Comments' => __DIR__ . '/../..' . '/app/View/Composers/Comments.php',
+        'App\\View\\Composers\\Footer' => __DIR__ . '/../..' . '/app/View/Composers/Footer.php',
         'App\\View\\Composers\\Post' => __DIR__ . '/../..' . '/app/View/Composers/Post.php',
         'App\\Walkers\\DropdownWalker' => __DIR__ . '/../..' . '/app/Walkers/DropdownWalker.php',
         'App\\Walkers\\MobileDropdownWalker' => __DIR__ . '/../..' . '/app/Walkers/MobileDropdownWalker.php',

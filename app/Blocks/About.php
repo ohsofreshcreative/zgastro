@@ -7,7 +7,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class About extends Block
 {
-	public $name = 'Więcej o nas';
+	public $name = 'O nas';
 	public $description = 'about';
 	public $slug = 'about';
 	public $category = 'formatting';
@@ -33,16 +33,20 @@ class About extends Block
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Więcej o nas',
+				'label' => 'O nas',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GROUP ---*/
-			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_about', ['label' => ''])
-			->addText('lead', ['label' => 'Nad obrazem'])
+			/*--- SEKCJA #1 ---*/
+			->addTab('Sekcja #1', ['placement' => 'top'])
+			->addGroup('g_about1', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Obraz #1',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
+			->addImage('logo', [
+				'label' => 'Logo',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
@@ -53,9 +57,27 @@ class About extends Block
 				'toolbar' => 'full', // 'basic', 'full'
 				'media_upload' => true,
 			])
-			->addLink('button', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
+			->endGroup()
+
+			/*--- SEKCJA #2 ---*/
+			->addTab('Sekcja #2', ['placement' => 'top'])
+			->addGroup('g_about2', ['label' => ''])
+			->addImage('image1', [
+				'label' => 'Obraz #1',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
+			->addImage('image2', [
+				'label' => 'Obraz #2',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
+			])
+			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
 			])
 			->endGroup()
 
@@ -123,7 +145,8 @@ class About extends Block
 	public function with()
 	{
 		return [
-			'g_about' => get_field('g_about'),
+			'g_about1' => get_field('g_about1'),
+			'g_about2' => get_field('g_about2'),
 			'id' => get_field('id'),
 			'class' => get_field('class'),
 			'flip' => get_field('flip'),
