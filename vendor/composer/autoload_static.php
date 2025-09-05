@@ -154,8 +154,6 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
             'Dotenv\\' => 7,
             'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Lexer\\' => 22,
-            'Database\\Seeders\\' => 17,
-            'Database\\Factories\\' => 19,
         ),
         'C' => 
         array (
@@ -498,14 +496,6 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/src',
         ),
-        'Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laravel/pint/database/seeders',
-        ),
-        'Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laravel/pint/database/factories',
-        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
@@ -525,7 +515,6 @@ class ComposerStaticInit98f3e1b0ed14492de67a0e6fcacef8b0
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
-            1 => __DIR__ . '/..' . '/laravel/pint/app',
         ),
     );
 
