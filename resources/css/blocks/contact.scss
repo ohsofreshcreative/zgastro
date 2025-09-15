@@ -1,14 +1,13 @@
 .contact {
   .__data {
 	font-size:18px;
-    margin-left: 42px;
   }
   .__phone {
     display: flex;
   }
 
   .__phone::before {
-    content: url('http://raab.local/wp-content/uploads/2025/06/phone-1.svg');
+    content: url('http://zgastro.local/wp-content/uploads/2025/09/phone.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -19,12 +18,12 @@
   }
 
   .__mail::before {
-    content: url('http://raab.local/wp-content/uploads/2025/06/mail-1.svg');
+    content: url('http://zgastro.local/wp-content/uploads/2025/09/mail.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
   }
-
+/* 
   .__address {
     display: flex;
   }
@@ -34,7 +33,7 @@
     margin-right: 16px;
     position: relative;
     top: 4px;
-  }
+  } */
 
   .__info {
     display: flex;

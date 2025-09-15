@@ -33,7 +33,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 				<a data-gsap-element="btn" class="main-btn m-btn" href="{{ $g_story['button']['url'] }}">{{ $g_story['button']['title'] }}</a>
 				@endif
 
-				<img class="absolute -top-20 -left-10" src="http://zgastro.local/wp-content/uploads/2025/09/about-bg.svg" />
+				<img class="absolute -top-20 -left-10" src="/wp-content/uploads/2025/09/about-bg.svg" />
 			</div>
 
 		</div>

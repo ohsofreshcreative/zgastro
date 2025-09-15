@@ -10,6 +10,8 @@ $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
+<!--- promo -->
+
 <section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="promo -smt {{ $sectionClass }} {{ $class }}">
 
 <div class="c-main">

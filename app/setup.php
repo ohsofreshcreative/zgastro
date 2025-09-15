@@ -136,6 +136,14 @@ add_action('after_setup_theme', function () {
 	 * @link https://developer.wordpress.org/reference/functions/add_theme_support/#customize-selective-refresh-widgets
 	 */
 	add_theme_support('customize-selective-refresh-widgets');
+
+    /**
+     * Custom WooCommerce functionality.
+     */
+    if (class_exists('WooCommerce')) {
+        require_once \locate_template('app/woocommerce.php');
+    }
+
 }, 20);
 
 /**

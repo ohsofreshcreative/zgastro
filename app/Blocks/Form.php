@@ -5,64 +5,52 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Proces extends Block
+class Form extends Block
 {
-	public $name = 'Proces';
-	public $description = 'proces';
-	public $slug = 'proces';
+	public $name = 'Nagłówek oraz formularz';
+	public $description = 'form';
+	public $slug = 'form';
 	public $category = 'formatting';
-	public $icon = 'randomize';
-	public $keywords = ['proces'];
+	public $icon = 'align-pull-left';
+	public $keywords = ['naglowek', 'tekst'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$proces = new FieldsBuilder('proces');
+		$form = new FieldsBuilder('form');
 
-		$proces
-			->setLocation('block', '==', 'acf/proces') // ważne!
+		$form
+			->setLocation('block', '==', 'acf/form') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Proces',
+				'label' => 'Nagłówek oraz formularz',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
-			->addTab('Treść', ['placement' => 'top'])
-			->addGroup('g_proces', ['label' => ''])
-
+			/*--- GROUP ---*/
+			->addTab('Elementy', ['placement' => 'top'])
+			->addGroup('g_form', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
-			->addText('txt', ['label' => 'Opis'])
-
-			->addRepeater('r_proces', [
-				'label' => 'Proces',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 3,
-				'min' => 3,
-				'button_label' => 'Dodaj element'
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
 			])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
+			->addText('form', [
+				'label' => 'Kod formularza',
+				'instructions' => 'np. [contact-form-7 id="28c3865" title="Formularz"]',
 			])
-			->addText('title', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
-			])
-			->endRepeater()
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -123,16 +111,13 @@ class Proces extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-
-
-		return $proces;
+		return $form;
 	}
 
 	public function with()
 	{
 		return [
-			'g_proces' => get_field('g_proces'),
-			'r_proces' => get_field('r_proces'),
+			'g_form' => get_field('g_form'),
 			'id' => get_field('id'),
 			'class' => get_field('class'),
 			'flip' => get_field('flip'),

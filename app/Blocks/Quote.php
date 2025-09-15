@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class TextTiles extends Block
+class Quote extends Block
 {
-	public $name = 'Treść + Kafelki (pionowo)';
-	public $description = 'text-tiles';
-	public $slug = 'text-tiles';
+	public $name = 'Cytat';
+	public $description = 'quote';
+	public $slug = 'quote';
 	public $category = 'formatting';
-	public $icon = 'table-col-before';
-	public $keywords = ['text-tiles', 'kafelki'];
+	public $icon = 'format-quote';
+	public $keywords = ['cytat', 'quote'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -24,65 +24,45 @@ class TextTiles extends Block
 
 	public function fields()
 	{
-		$text_tiles = new FieldsBuilder('text-tiles');
+		$quote = new FieldsBuilder('quote');
 
-		$text_tiles
-			->setLocation('block', '==', 'acf/text-tiles') // ważne!
+		$quote
+			->setLocation('block', '==', 'acf/quote') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Treść + Kafelki (pionowo)',
+				'label' => 'Cytat',
 				'open' => false,
 				'multi_expand' => true,
 			])
-
-			/*--- TAB #1 ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('g_tiles', ['label' => ''])
+			/*--- GROUP ---*/
+			->addTab('Elementy', ['placement' => 'top'])
+			->addGroup('g_quote', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
 			->addText('title', ['label' => 'Tytuł'])
-			->addTextarea('text', [
-				'label' => 'Tekst',
-				'rows' => 4,
-				'new_lines' => 'br',
-			])
-			->addTextarea('content', [
-				'label' => 'Opis nad kafelkami',
-				'rows' => 4,
-				'new_lines' => 'br',
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
 			])
 			->endGroup()
-
-			/*--- TAB #2 ---*/
-			->addTab('Kafelki', ['placement' => 'top'])
-			->addRepeater('repeater', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('card_title', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('card_txt', [
-				'label' => 'Opis',
-			])
-			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('id', [
+				'label' => 'ID',
+			])
+			->addText('class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -95,13 +75,25 @@ class TextTiles extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
+			->addTrueFalse('nomt', [
+				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('lightbg', [
 				'label' => 'Jasne tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('greybg', [
+			->addTrueFalse('graybg', [
 				'label' => 'Szare tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
@@ -118,29 +110,25 @@ class TextTiles extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('nomt', [
-				'label' => 'Usunięcie marginesu górnego',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
 			]);
 
-		return $text_tiles;
+		return $quote;
 	}
 
 	public function with()
 	{
 		return [
-			'g_tiles' => get_field('g_tiles'),
-			'repeater' => get_field('repeater'),
+			'g_quote' => get_field('g_quote'),
+			'id' => get_field('id'),
+			'class' => get_field('class'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
+			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
 			'lightbg' => get_field('lightbg'),
-			'greybg' => get_field('greybg'),
+			'graybg' => get_field('graybg'),
 			'whitebg' => get_field('whitebg'),
 			'brandbg' => get_field('brandbg'),
-			'nomt' => get_field('nomt'),
 		];
 	}
 }

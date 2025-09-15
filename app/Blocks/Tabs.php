@@ -11,7 +11,7 @@ class Tabs extends Block
 	public $description = 'tabs';
 	public $slug = 'tabs';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
+	public $icon = 'welcome-widgets-menus';
 	public $keywords = ['tabs', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
