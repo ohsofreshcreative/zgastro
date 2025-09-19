@@ -18,7 +18,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			<p>{{ $g_reviews['txt'] }}</p>
 		</div>
 
-		<div class="swiper usage-swiper !overflow-visible my-36">
+		<div class="swiper usage-swiper !overflow-visible my-10">
 
 			<div class="__arrows  flex gap-4 mb-10 ml-auto">
 				<div class="swiper-button-prev">

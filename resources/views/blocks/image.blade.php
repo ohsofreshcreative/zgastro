@@ -7,13 +7,11 @@ $customClass = $block->data['className'] ?? '';
 
 @endphp
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="image -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="image -smt">
 
-	<div class="__wrapper c-main">
+	<div class="__wrapper">
 
-		@if (!empty($g_image['image']))
-		<img class="object-cover w-full __img img-xl order1" src="{{ $g_image['image']['url'] }}" alt="{{ $g_image['image']['alt'] ?? '' }}">
-		@endif
+		<a data-gsap-element="btn" href="{{ $g_image['button']['url'] }}"><img class="object-cover w-full __img" src="{{ $g_image['image']['url'] }}" alt="{{ $g_image['image']['alt'] ?? '' }}"></a>
 
 	</div>
 
