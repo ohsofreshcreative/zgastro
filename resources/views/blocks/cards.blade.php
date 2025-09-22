@@ -24,10 +24,10 @@ $gridClass = $itemCount > 1 ? ('grid-cols-1 lg:grid-cols-' . $cols) : 'grid-cols
 	<div class="__wrapper c-main">
 
 		<div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] items-center gap-8 lg:gap-20">
-			<img class="mb-6 max-w-full img-l rounded-xl" src="{{ $gImage['url'] }}" alt="{{ $gImage['alt'] ?? '' }}" loading="lazy" decoding="async" width="{{ $gImage['width'] ?? '' }}" height="{{ $gImage['height'] ?? '' }}">
+			<img data-gsap-element="img" class="mb-6 max-w-full img-l rounded-xl" src="{{ $gImage['url'] }}" alt="{{ $gImage['alt'] ?? '' }}" loading="lazy" decoding="async" width="{{ $gImage['width'] ?? '' }}" height="{{ $gImage['height'] ?? '' }}">
 			<div>
-				<h2 class="mb-6">{{ strip_tags($gTitle) }}</h2>
-				<div class=max-w-none">{!! $gContent !!}</div>
+				<h2 data-gsap-element="title" class="mb-6">{{ strip_tags($gTitle) }}</h2>
+				<div data-gsap-element="txt" class="max-w-none">{!! $gContent !!}</div>
 			</div>
 		</div>
 
@@ -40,12 +40,13 @@ $gridClass = $itemCount > 1 ? ('grid-cols-1 lg:grid-cols-' . $cols) : 'grid-cols
 			$txt = $item['card_txt'] ?? '';
 			@endphp
 
-			<div class="__card relative b-shadow p-6 rounded-xl bg-white">
-				<img class="mb-2 w-[40px] h-auto shrink-0" src="{{ $img['url'] }}" alt="{{ $img['alt'] ?? '' }}" loading="lazy" decoding="async" width="{{ $img['width'] ?? '' }}" height="{{ $img['height'] ?? '' }}">
-
-				<div>
-					<b class="m-title block">{{ $title }}</b>
-					<div class="text-lg mt-2">{!! $txt !!}</div>
+			<div data-gsap-element="card">
+				<div class="__card relative b-shadow p-6 rounded-xl bg-white">
+					<img class="mb-2 w-[40px] h-auto shrink-0" src="{{ $img['url'] }}" alt="{{ $img['alt'] ?? '' }}" loading="lazy" decoding="async" width="{{ $img['width'] ?? '' }}" height="{{ $img['height'] ?? '' }}">
+					<div>
+						<b class="m-title block">{{ $title }}</b>
+						<div class="text-lg mt-2">{!! $txt !!}</div>
+					</div>
 				</div>
 			</div>
 			@endforeach

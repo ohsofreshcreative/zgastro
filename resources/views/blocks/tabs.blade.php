@@ -23,7 +23,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 	  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-14">
 		{{-- LEWY PANEL: TABS --}}
 		<div class="lg:col-span-3 h-full">
-		  <div class="flex flex-row lg:flex-col justify-between h-full js-tabs-nav" role="tablist" aria-orientation="vertical">
+		  <div data-gsap-element="tabs" class="flex flex-row lg:flex-col justify-between h-full js-tabs-nav" role="tablist" aria-orientation="vertical">
 			@foreach ($r_tabs as $i => $tab)
 			  <button
 				type="button"
@@ -39,7 +39,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 		  </div>
 		</div>
 		{{-- PRAWY PANEL: TREŚĆ --}}
-		<div class="lg:col-span-9">
+		<div data-gsap-element="content" class="lg:col-span-9">
 		  <div class="tabs-panels js-tabs-panels bg-white p-10 b-radius relative overflow-hidden">
 			@foreach ($r_tabs as $i => $tab)
 			  <div

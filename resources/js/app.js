@@ -11,16 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
   new MiniCart();
 });
 
-/*--- BLOCKS ---*/
-
-Object.values(import.meta.glob('./blocks/*.js', { eager: true }));
-
 /*--- GSAP ---*/
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+/*--- BLOCKS ---*/
+
+Object.values(import.meta.glob('./blocks/*.js', { eager: true }));
+
 
 /*--- ALPINE ---*/
 
@@ -32,7 +33,6 @@ Alpine.start();
 /*--- GSAP ---*/
 
 document.addEventListener('DOMContentLoaded', function () {
-  gsap.registerPlugin(ScrollTrigger);
 
   // Pobieramy wszystkie sekcje ACF
   gsap.utils.toArray("[data-gsap-anim='section']").forEach((section) => {
@@ -60,20 +60,19 @@ document.addEventListener('DOMContentLoaded', function () {
       "[data-gsap-element]:not([data-gsap-element='img']):not([data-gsap-element='stagger'])"
     );
     elements.forEach((element, index) => {
-      gsap.from(element, {
-        opacity: 0,
-        y: 50,
-        filter: 'blur(15px)',
-        duration: 1,
-        ease: 'power2.out',
-        delay: index * 0.1,
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 90%',
-          toggleActions: 'play none none none',
-          once: true,
-        },
-      });
+    gsap.from(element, {
+  opacity: 0,
+  scale: 1.05,
+  duration: 0.8,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: element,
+    start: 'top 85%',
+    toggleActions: 'play none none none',
+    once: true,
+  },
+});
+
     });
 
     // 3. Nowa animacja — sekwencja z ręcznym opóźnieniem na data-gsap-element="stagger"
@@ -231,5 +230,4 @@ tiles.forEach((tile, i) => {
     },
   });
 });
-
 
