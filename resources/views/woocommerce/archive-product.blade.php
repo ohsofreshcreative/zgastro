@@ -9,7 +9,7 @@
 
   <header class="woocommerce-products-header">
     @if (apply_filters('woocommerce_show_page_title', true))
-      <h1 class="woocommerce-products-header__title page-title">{!! woocommerce_page_title(false) !!}</h1>
+      <h1 class="woocommerce-products-header__title page-title mt-10 mb-6">{!! woocommerce_page_title(false) !!}</h1>
     @endif
 
   </header>

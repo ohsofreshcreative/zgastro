@@ -211,10 +211,11 @@ add_action('widgets_init', function () {
 	echo '</section>';
 }, 20);
  */
+
 /*--- PRICE ABOVE ADD TO CART ---*/
 
 add_filter('woocommerce_get_price_html', function ($price, $product) {
-    if (!empty($price)) {
+    if (!empty($price) && is_product()) {
         $price = '<span class="price-label">Cena: </span>' . $price;
     }
     return $price;
@@ -233,6 +234,26 @@ add_action('after_setup_theme', function () {
 	// Wstaw cenę tuż nad przyciskiem Add to cart (priorytet 9, żeby było nad 10)
 	add_action('woocommerce_before_add_to_cart_button', 'woocommerce_template_single_price', 9);
 });
+
+/*--- CHANGE ADD TO CART TO SEE DETAILS ---*/
+
+add_action('after_setup_theme', function () {
+    // usuń domyślny button "Dodaj do koszyka"
+    remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+
+    // dodaj własny przycisk "Zobacz produkt"
+    add_action('woocommerce_after_shop_loop_item', function () {
+        global $product;
+        echo '<a href="' . get_permalink($product->get_id()) . '" class="button">Zobacz produkt</a>';
+    }, 10);
+});
+
+/*--- REMOVE RESULT COUNT ---*/
+
+add_action('init', function () {
+    remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+    remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
+}, 20);
 
 /*--- HIDE RESET VARIATIONS */
 

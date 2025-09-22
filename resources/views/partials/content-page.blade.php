@@ -2,6 +2,6 @@
 
 @if ($pagination())
   <nav class="page-nav" aria-label="Page">
-    {!! $pagination !!}
+    {!! $pagination !!}2
   </nav>
 @endif
