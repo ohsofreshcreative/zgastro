@@ -23,7 +23,7 @@ $gridClass = $itemCount > 1 ? ('grid-cols-1 lg:grid-cols-' . $cols) : 'grid-cols
 <section data-gsap-anim="section" @if(!empty($id)) id="{{ $id }}" @endif class="cards -smt {{ $sectionClass }} {{ $class ?? '' }}">
 	<div class="__wrapper c-main">
 
-		<div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] items-center gap-8 lg:gap-20">
+		<div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] items-center gap-2 lg:gap-20">
 			<img data-gsap-element="img" class="mb-6 max-w-full img-l rounded-xl" src="{{ $gImage['url'] }}" alt="{{ $gImage['alt'] ?? '' }}" loading="lazy" decoding="async" width="{{ $gImage['width'] ?? '' }}" height="{{ $gImage['height'] ?? '' }}">
 			<div>
 				<h2 data-gsap-element="title" class="mb-6">{{ strip_tags($gTitle) }}</h2>
@@ -32,7 +32,7 @@ $gridClass = $itemCount > 1 ? ('grid-cols-1 lg:grid-cols-' . $cols) : 'grid-cols
 		</div>
 
 		@if($itemCount)
-		<div class="grid {{ $gridClass }} gap-8 -mt-20">
+		<div class="grid {{ $gridClass }} gap-4 md:gap-8 mt-10 lg:-mt-20">
 			@foreach($items as $item)
 			@php
 			$img = $item['card_image'] ?? null;

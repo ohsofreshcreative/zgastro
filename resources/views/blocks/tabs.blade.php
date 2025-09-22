@@ -12,7 +12,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 <section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="tabs -smt {{ $sectionClass }} {{ $class }}">
 
   <div class="c-main">
-	<div class="w-1/2 m-auto text-center">
+	<div class="w-full md:w-1/2 m-auto text-center">
 	  <h2 data-gsap-element="header">{{ $g_tabs['title'] ?? '' }}</h2>
 	  @if(!empty($g_tabs['txt']))
 		<p data-gsap-element="txt" class="mt-2 text-xl">{!! $g_tabs['txt'] !!}</p>
@@ -23,7 +23,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 	  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-14">
 		{{-- LEWY PANEL: TABS --}}
 		<div class="lg:col-span-3 h-full">
-		  <div data-gsap-element="tabs" class="flex flex-row lg:flex-col justify-between h-full js-tabs-nav" role="tablist" aria-orientation="vertical">
+		  <div data-gsap-element="tabs" class="flex flex-row lg:flex-col h-full js-tabs-nav gap-4 lg:gap-0 overflow-x-scroll lg:overflow-x-visible px-5 lg:px-0" role="tablist" aria-orientation="vertical">
 			@foreach ($r_tabs as $i => $tab)
 			  <button
 				type="button"
@@ -60,7 +60,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 					@endif
 				  </div>
 				  @if (!empty($tab['image']['url']))
-					<img class="rounded-xl img-l max-w-full h-auto overflow-visible"
+					<img class=""
 						 src="{{ $tab['image']['url'] }}"
 						 alt="{{ $tab['image']['alt'] ?? '' }}">
 				  @endif

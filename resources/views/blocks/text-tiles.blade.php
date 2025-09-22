@@ -22,10 +22,10 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 			@endif
 		</div>
 
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 mt-10">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 mt-10">
 
 			@if (!empty($g_tiles['image']))
-			<div data-gsap-element="img" class="__img order1 sticky top-20 h-max">
+			<div data-gsap-element="img" class="__img order1 relative lg:sticky top-0 lg:top-20 h-max">
 				<img class="object-cover w-full __img img-m img-radius" src="{{ $g_tiles['image']['url'] }}" alt="{{ $g_tiles['image']['alt'] ?? '' }}">
 			</div>
 			@endif

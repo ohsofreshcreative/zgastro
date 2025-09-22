@@ -53,9 +53,9 @@ use App\Walkers\MobileDropdownWalker;
 
 	<!-- Mobile Header Bar -->
 	<div class="flex items-center justify-between p-4 mobile-menu fixed-top md:hidden">
-		<a class="brand shrink-0" href="{{ home_url('/') }}">
+		<a class="brand" href="{{ home_url('/') }}">
 			@if ($logo)
-			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-12">
+			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-2/3 h-12">
 			@else
 			<span class="text-lg font-bold">{{ $siteName }}</span>
 			@endif
@@ -89,7 +89,7 @@ use App\Walkers\MobileDropdownWalker;
 
 		<button
 			@click.stop="mobileOpen = !mobileOpen"
-			class="p-2 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
+			class="p-2 focus:outline-none focus:ring-2 focus:ring-inset"
 			aria-expanded="mobileOpen"
 			aria-controls="mobile-menu-panel">
 			<span class="sr-only">Otwórz menu główne</span>
@@ -100,11 +100,11 @@ use App\Walkers\MobileDropdownWalker;
 				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
 			</svg>
 		</button>
-		<div x-ref="mSearch" class="hidden px-4 py-2 bg-white border-b md:hidden">
+		<div x-ref="mSearch" class="mSearch hidden px-4 py-2 bg-background border-b md:hidden">
 			<form method="get" action="{{ esc_url( home_url('/') ) }}" class="flex">
 				<input type="hidden" name="post_type" value="product">
 				<input name="s" type="search" placeholder="Szukaj produktów…" class="flex-1 border rounded-l-md px-3 py-2">
-				<button type="submit" class="px-3 py-2 border border-l-0 rounded-r-md bg-gray-100">Szukaj</button>
+				<button type="submit" class="px-3 py-2 rounded-r-md bg-secondary text-white">Szukaj</button>
 			</form>
 		</div>
 	</div>
@@ -150,8 +150,8 @@ use App\Walkers\MobileDropdownWalker;
 			@endif
 
 			<div class="pt-6 mt-8 border-t border-gray-200">
-				<a href="/kontakt/" class="block w-full  main-btn">
-					Umów konsultację
+				<a href="/sklep/" class="block w-full  main-btn">
+					Zobacz ofertę
 				</a>
 			</div>
 		</div>

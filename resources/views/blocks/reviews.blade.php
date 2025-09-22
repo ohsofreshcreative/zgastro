@@ -14,11 +14,11 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 	<div class="c-main">
 
 		<div class="__wrapper text-center w-full md:w-1/2 m-auto pb-10">
-			<h2 class="">{{ $g_reviews['title']}}</h2>
-			<p>{{ $g_reviews['txt'] }}</p>
+			<h2 data-gsap-element="header" class="">{{ $g_reviews['title']}}</h2>
+			<p data-gsap-element="text">{{ $g_reviews['txt'] }}</p>
 		</div>
 
-		<div class="swiper usage-swiper !overflow-visible my-10">
+		<div data-gsap-element="swiper" class="swiper usage-swiper !overflow-visible my-10">
 
 			<div class="__arrows  flex gap-4 mb-10 ml-auto">
 				<div class="swiper-button-prev">
@@ -60,9 +60,9 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 				</div>
 				@endforeach
 			</div>
-			<img class="absolute top-1/2 -translate-y-1/2 left-0 rounded-r-3xl aspect-square" src="{{ $g_reviews['image']['url'] }}">
+			<img data-gsap-element="img" class="absolute top-1/2 -translate-y-1/2 left-0 rounded-r-3xl aspect-square" src="{{ $g_reviews['image']['url'] }}">
 
-			<div class="text-right pt-8 ml-auto">
+			<div data-gsap-element="google" class="text-right pt-8 ml-auto">
 				<img class="ml-auto" src="/wp-content/uploads/2025/08/google.svg" />
 				<p>45 opinii Google<br /><a class="!underline" href="https://www.google.com/search?sa=X&sca_esv=80f6c8a4b1eab6de&tbm=lcl&sxsrf=AE3TifONeYGA8zqd-uvpdt8h7pQoUo3sCQ:1756634002049&q=Zak%C5%82ad+Gastronomiczny+-+Catering+-+Wyroby+Garma%C5%BCeryjne+Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDI0NjA1NTMzNjWxMDEyNrY0MNnAyPiK0T4qMftoU2KKgnticUlRfl5-bmZyVV6lgq6Cc2JJalFmXjqQGV5ZlJ9UCVRSlJt4dE9qUWVWXqqCf0FmXmbqIlZKTQAAyfEtEZ8AAAA&rldimm=12130556635484233904&hl=pl-PL&ved=2ahUKEwjM48TN47SPAxUyPRAIHT76OnsQ9fQKegQIMRAF&biw=1792&bih=903&dpr=2#lkt=LocalPoiReviews" target="_blank" rel="noopener">Sprawdź wszystkie</a></p>
 			</div>

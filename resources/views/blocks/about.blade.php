@@ -10,11 +10,11 @@ $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
-<!--- g_about -->
+<!--- about -->
 
-<section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="about relative -mt-14 {{ $sectionClass }} {{ $class }}">
+<section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="about relative mt-10 md:-mt-14 {{ $sectionClass }} {{ $class }}">
 	<div class="__wrapper c-main relative">
-		<div class="__col w-full md:w-2/3 ml-0 ml-36">
+		<div class="__col w-full md:w-2/3 ml-0 md:ml-36">
 			<div class="">
 				@if (!empty($g_about1['image']))
 				<div data-gsap-element="img" class="__img relative w-max">
@@ -24,7 +24,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 				@endif
 			</div>
 
-			<div class="__content flex flex-col mt-26">
+			<div class="__content flex flex-col mt-10 md:mt-26">
 				<h2 data-gsap-element="header" class="m-title">{{ $g_about1['title'] }}</h2>
 				<div data-gsap-element="txt" class="">
 					{!! $g_about1['content'] !!}
@@ -32,7 +32,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			</div>
 		</div>
 		<div class="__col -smt">
-			<div class="__imgs grid grid-cols-1 md:grid-cols-[1fr_2fr] items-end gap-30">
+			<div class="__imgs grid grid-cols-1 md:grid-cols-[1fr_2fr] items-end gap-10 md:gap-30">
 				@if (!empty($g_about2['image1']))
 				<div data-gsap-element="img" class="__img relative">
 					<img class="img-radius img-l" src="{{ $g_about2['image1']['url'] }}" alt="{{ $g_about2['image1']['alt'] ?? '' }}">
@@ -48,7 +48,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 						</div>
 					</div>
 					@if (!empty($g_about2['image2']))
-					<div data-gsap-element="img" class="__img relative mt-16 mb-30">
+					<div data-gsap-element="img" class="__img relative mt-16 mb-0 md:mb-30">
 						<img class="img-radius" src="{{ $g_about2['image2']['url'] }}" alt="{{ $g_about2['image2']['alt'] ?? '' }}">
 					</div>
 					@endif

@@ -65,3 +65,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+/*--- REVIEW SWIPER ---*/
+
+document.addEventListener('DOMContentLoaded', () => {
+  const swipers = document.querySelectorAll('.usage-swiper');
+
+  if (swipers.length > 0) {
+    swipers.forEach((container) => {
+      new Swiper(container, {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: container.querySelector('.swiper-pagination'),
+          clickable: true,
+        },
+        navigation: {
+          nextEl: container.querySelector('.swiper-button-next'),
+          prevEl: container.querySelector('.swiper-button-prev'),
+        },
+        breakpoints: {
+          640: { 
+            slidesPerView: 1,
+            spaceBetween: 32,
+          },
+          800: {
+            slidesPerView: 1.5,
+            spaceBetween: 32,
+          },
+          1200: {
+            slidesPerView: 2.5,
+            spaceBetween: 32,
+          },
+        },
+      });
+    });
+  }
+});

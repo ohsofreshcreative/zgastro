@@ -534,6 +534,10 @@ h6,
   color: var(--hover);
 }
 
+.bg-background {
+  background-color: var(--bg) !important;
+}
+
 .bg-primary {
   background-color: var(--primary);
 }
@@ -944,6 +948,13 @@ h6,
 
 .mobile-menu {
   z-index: 99999;
+}
+
+.mSearch {
+	position: absolute;
+	width: 100%;
+	top:var(--menu-height);
+	left:0;
 }
 
 /*--- !BLOCKS ---*/

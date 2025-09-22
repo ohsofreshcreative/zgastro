@@ -38,16 +38,18 @@ if (!empty($g_proces['r_proces'])) {
             <div class="gap-8 grid grid-cols-1 {{ $gridColsClass }} mt-10">
 
                 @foreach ($g_proces['r_proces'] as $item)
-                <div data-gsap-element="stagger" class="__card relative flex gap-6 bg-white b-radius b-shadow z-10 p-10 pt-16">
-                    <div class="__nr absolute -top-4 flex items-center justify-center w-10 h-10 rounded-full bg-yellow text-2xl font-bold text-third">
-                        {{ $loop->iteration }}
-                    </div>
-                    <img class="" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
-                    <div>
-                        <h6 class="text-third m-title block">{{ $item['title'] }}</h6>
-                        <div class="text-lg mt-2">{!! $item['txt'] !!}</div>
-                    </div>
-                </div>
+                <div data-gsap-element="card" >
+					<div class="__card relative flex gap-6 bg-white b-radius b-shadow z-10 p-10 pt-16">
+						<div class="__nr absolute -top-4 flex items-center justify-center w-10 h-10 rounded-full bg-yellow text-2xl font-bold text-third">
+							{{ $loop->iteration }}
+						</div>
+						<img class="" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
+						<div>
+							<h6 class="text-third m-title block">{{ $item['title'] }}</h6>
+							<div class="text-lg mt-2">{!! $item['txt'] !!}</div>
+						</div>
+					</div>
+				</div>
                 @endforeach
 
             </div>

@@ -7,9 +7,9 @@ $sectionClass .= $flip ? ' order-flip' : '';
 
 <section data-gsap-anim="section" @if($id) id="{{ $id }}" @endif class="hero relative mx-6 {{ $sectionClass }} {{ $class }}">
 
-	<div class="__wrapper grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+	<div class="__wrapper grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
 
-		<div data-gsap-element="content" class="flex flex-col justify-center h-full bg-shade b-radius px-10 md:px-30">
+		<div data-gsap-element="content" class="flex flex-col justify-center h-full bg-shade b-radius px-10 md:px-30 py-20 md:py-0">
 			<h1 data-gsap-element="header" class="m-title">
 				{{ $hero['title'] }}
 			</h1>
