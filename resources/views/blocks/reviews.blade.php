@@ -60,7 +60,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 				</div>
 				@endforeach
 			</div>
-			<img data-gsap-element="img" class="absolute top-1/2 -translate-y-1/2 left-0 rounded-r-3xl aspect-square" src="{{ $g_reviews['image']['url'] }}">
+			<img data-gsap-element="img" class="absolute object-cover top-1/2 -translate-y-1/2 left-0 rounded-r-3xl aspect-square" src="{{ $g_reviews['image']['url'] }}">
 
 			<div data-gsap-element="google" class="text-right pt-8 ml-auto">
 				<img class="ml-auto" src="/wp-content/uploads/2025/08/google.svg" />

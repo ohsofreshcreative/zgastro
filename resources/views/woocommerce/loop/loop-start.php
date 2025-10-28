@@ -19,4 +19,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<ul class="products grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<ul data-gsap-element="products" class="products grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

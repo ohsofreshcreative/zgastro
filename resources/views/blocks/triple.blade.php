@@ -24,7 +24,7 @@ $sectionClass .= !empty($brandbg) ? ' section-brand' : '';
 		<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10">
 			@foreach ($r_triple as $item)
 			<div data-gsap-element="card">
-				<div class="__card relative b-shadow p-8 rounded-xl bg-white pt-48" style="background:linear-gradient(180deg, rgba(0, 0, 0, 0.00) 30%, rgba(0, 0, 0, 0.90) 85%), url({{ $item['image']['url'] }}); background-size: cover; background-position: center;">
+				<div class="__card relative h-full b-shadow p-8 rounded-xl bg-white pt-48" style="background:linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 75%), url({{ $item['image']['url'] }}); background-size: cover; background-position: center;">
 					<div>
 						<h4 class="text-yellow">{{ $item['title'] }}</h4>
 						<div class="text-lg text-white">{!! $item['txt'] !!}</div>

@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 
 @php global $product; @endphp
 
-<li data-gsap-element="card" class="bg-white b-radius relative !p-10">
+<li class="bg-white b-radius relative !p-10">
 
 		@if($product && $product->is_on_sale())
 		<span class="onsale">Promocja!</span>
