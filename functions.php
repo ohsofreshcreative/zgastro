@@ -105,3 +105,9 @@ add_filter('sage/acf-composer/fields', fn () => [
     App\Blocks\ExampleBlock::class,
 ]);
 
+
+
+
+add_filter('woocommerce_coming_soon_message', function($message) {
+    return 'Nasza nowa strona sklepu już prawie gotowa! Zajrzyj ponownie wkrótce.';
+});

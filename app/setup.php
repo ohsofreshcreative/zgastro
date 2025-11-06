@@ -625,3 +625,18 @@ add_action('wp', function () {
 		}
 	}, 40);
 });
+
+
+add_action('template_redirect', function () {
+    // Sprawdzamy, czy jesteśmy na stronie produktu i czy ma ona ustawione pole "coming_soon".
+    if (is_product() && get_post_meta(get_the_ID(), 'coming_soon', true)) {
+        
+        // Zamiast wstrzykiwać HTML, renderujemy nasz dedykowany widok Blade.
+        // Funkcja \Roots\view() jest kluczowa w Sage.
+        echo \Roots\view('coming-soon');
+        
+        // Zatrzymujemy dalsze wykonywanie skryptu, aby WordPress/WooCommerce
+        // nie próbował załadować standardowego szablonu produktu.
+        exit;
+    }
+});

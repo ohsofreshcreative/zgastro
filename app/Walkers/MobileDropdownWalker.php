@@ -31,7 +31,7 @@ class MobileDropdownWalker extends Walker_Nav_Menu
             $output .= '<div class="flex items-center justify-between">';
             
             // Link do strony nadrzędnej – zajmuje większość miejsca.
-            $output .= '<a href="' . esc_attr($item->url) . '" class="flex-grow py-1 pr-4">';
+            $output .= '<a href="' . esc_attr($item->url) . '" class="text-lg flex-grow py-1 pr-4">';
             $output .= esc_html($item->title);
             $output .= '</a>';
             
@@ -47,7 +47,7 @@ class MobileDropdownWalker extends Walker_Nav_Menu
         // Case 2: Zwykły element menu, bez dzieci.
         else {
             $output .= '<li>';
-            $output .= '<a href="' . esc_attr($item->url) . '" class="block py-1">';
+            $output .= '<a href="' . esc_attr($item->url) . '" class="text-lg block py-1">';
             $output .= esc_html($item->title);
             $output .= '</a>';
         }
