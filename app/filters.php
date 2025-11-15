@@ -23,3 +23,4 @@ add_filter('gettext', function ($translated_text, $text, $domain) {
     }
     return $translated_text;
 }, 20, 3);
+
