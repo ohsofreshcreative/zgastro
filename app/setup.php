@@ -640,3 +640,87 @@ add_action('template_redirect', function () {
         exit;
     }
 });
+
+/*--- WOOCOMMERCE SHIPPING CLASS POSTCODE RESTRICTION ---*/
+add_filter('woocommerce_package_rates', function ($rates, $package) {
+    $shipping_class_slug = 'dostawa-lokalna';
+
+    $restricted_item_in_cart = false;
+    foreach ($package['contents'] as $item) {
+        if ($item['data']->get_shipping_class() === $shipping_class_slug) {
+            $restricted_item_in_cart = true;
+            break;
+        }
+    }
+
+    if (!$restricted_item_in_cart) {
+        return $rates;
+    }
+
+    $postcode = $package['destination']['postcode'];
+    $normalized_postcode = preg_replace('/[^\d-]/', '', $postcode);
+
+    $is_allowed = false;
+    if (!empty($normalized_postcode)) {
+        $allowed_patterns = [
+            '/^0[0-4]-\d{3}$/',
+            '/^05-0[7-9]\d$/',
+            '/^05-2\d{2}$/',
+            '/^05-4\d{2}$/',
+            '/^05-5\d{2}$/',
+            '/^05-8\d{2}$/',
+        ];
+
+        $allowed_individual_codes = [
+            '05-100', '05-300',
+        ];
+
+        foreach ($allowed_patterns as $pattern) {
+            if (preg_match($pattern, $normalized_postcode)) {
+                $is_allowed = true;
+                break;
+            }
+        }
+
+        if (!$is_allowed && in_array($normalized_postcode, $allowed_individual_codes)) {
+            $is_allowed = true;
+        }
+    }
+
+    if (!$is_allowed) {
+        return [];
+    }
+
+    return $rates;
+}, 100, 2);
+
+add_action('woocommerce_after_calculate_totals', function ($cart) {
+    if (is_admin() && !defined('DOING_AJAX')) {
+        return;
+    }
+
+    $shipping_packages = WC()->shipping->get_packages();
+    $rates = $shipping_packages[0]['rates'] ?? [];
+
+    if (!empty($rates)) {
+        return;
+    }
+
+    $shipping_class_slug = 'dostawa-lokalna';
+    $restricted_item_in_cart = false;
+    foreach ($cart->get_cart() as $item) {
+        if ($item['data']->get_shipping_class() === $shipping_class_slug) {
+            $restricted_item_in_cart = true;
+            break;
+        }
+    }
+
+    if ($restricted_item_in_cart) {
+        $error_message = 'Niestety, dla produktów w Twoim koszyku nie oferujemy dostawy pod wskazany kod pocztowy. Zmień miejsce dostawy.';
+        if (!wc_has_notice($error_message, 'error')) {
+            wc_add_notice($error_message, 'error');
+        }
+    }
+}, 9999);
+
+

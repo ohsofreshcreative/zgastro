@@ -161,3 +161,5 @@ standardImages.forEach((img) => {
   });
 
 }); // Koniec window.addEventListener('load', ...)
+
+
