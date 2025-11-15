@@ -699,6 +699,11 @@ add_action('woocommerce_after_calculate_totals', function ($cart) {
         return;
     }
 
+    // Wyświetlaj powiadomienie tylko na stronie koszyka i zamówienia
+    if (!is_cart() && !is_checkout()) {
+        return;
+    }
+
     // Sprawdź, czy dla pierwszego pakietu są dostępne metody wysyłki
     $shipping_packages = WC()->shipping->get_packages();
     $rates = $shipping_packages[0]['rates'] ?? [];
@@ -727,7 +732,7 @@ add_action('woocommerce_after_calculate_totals', function ($cart) {
             $product_name = $product->get_name();
             $remove_url = wc_get_cart_remove_url($cart_item_key);
             $message .= sprintf(
-                '<li>%s <a href="%s" class="remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times; usuń</a></li>',
+                '<li class="font-semibold">%s <a href="%s" class="remove_from_cart_button text-third" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times; Usuń</a></li>',
                 esc_html($product_name),
                 esc_url($remove_url),
                 esc_attr(sprintf('Usuń %s z koszyka', $product_name)),
@@ -746,4 +751,3 @@ add_action('woocommerce_after_calculate_totals', function ($cart) {
         }
     }
 }, 9999);
-

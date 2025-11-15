@@ -1515,11 +1515,16 @@ input[type='checkbox'] {
 
 /*--- !WOOCOMMERCE ---*/
 
-.woocommerce-error, .woocommerce-info, .woocommerce-message {
-	color:var(--p-700);
+.woocommerce-error,
+.woocommerce-info,
+.woocommerce-message {
+  color: var(--p-700);
 }
 
 .woocommerce-notices-wrapper {
+  .list-disc li {
+    list-style: disc inside !important;
+  }
   .woocommerce-message {
     background-color: var(--p-100);
     border: 1px solid var(--primary);
@@ -1795,6 +1800,9 @@ html.cart-drawer-open .cart-drawer__backdrop {
   color: var(--primary) !important;
   text-decoration: underline !important;
   transition: all 0.3s;
+  width: max-content;
+  margin-top: 0 !important;
+  margin-left: 8px;
 }
 
 .woocommerce-cart .cart-collaterals .shipping-calculator-button:hover {
