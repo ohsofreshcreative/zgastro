@@ -4,6 +4,8 @@ import.meta.glob(['../images/**', '../fonts/**']);
 import './menubar.js';
 import './footer-accordion.js';
 import './swiper.js';
+import { initWooCommerceLoadMore } from './load-more.js';
+
 
 /*--- BLOCKS ---*/
 Object.values(
@@ -20,7 +22,7 @@ Alpine.start();
 // --- GŁÓWNA LOGIKA APLIKACJI (W TYM GSAP Z CDN) ---
 // Używamy 'load', aby mieć pewność, że skrypty GSAP z CDN zostały w pełni załadowane.
 window.addEventListener('load', () => {
-
+  initWooCommerceLoadMore();
   // Sprawdzamy, czy GSAP z CDN jest dostępny, zanim cokolwiek zrobimy
   if (!window.gsap) {
     console.error("GSAP nie został załadowany z CDN. Sprawdź, czy skrypty są w app.blade.php.");

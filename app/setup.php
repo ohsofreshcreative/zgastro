@@ -69,8 +69,6 @@ add_action('after_setup_theme', function () {
 	add_theme_support('wc-product-gallery-zoom');
 	add_theme_support('wc-product-gallery-lightbox');
 	add_theme_support('wc-product-gallery-slider');
-
-
 	/**
 	 * Disable full-site editing support.
 	 *
@@ -642,6 +640,7 @@ add_action('template_redirect', function () {
 });
 
 /*--- WOOCOMMERCE SHIPPING CLASS POSTCODE RESTRICTION ---*/
+
 add_filter('woocommerce_package_rates', function ($rates, $package) {
     $shipping_class_slug = 'dostawa-lokalna';
 
@@ -751,3 +750,61 @@ add_action('woocommerce_after_calculate_totals', function ($cart) {
         }
     }
 }, 9999);
+
+/*--- REMOVE PAGINATION ---*/
+
+remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
+
+/**
+ * Rejestruje endpoint AJAX do ładowania produktów.
+ */
+add_action('wp_ajax_load_more_products', 'App\load_more_products_ajax_handler');
+add_action('wp_ajax_nopriv_load_more_products', 'App\load_more_products_ajax_handler');
+
+/**
+ * Handler AJAX do ładowania kolejnej strony produktów.
+ */
+function load_more_products_ajax_handler() {
+    if (!isset($_POST['query']) || !isset($_POST['page'])) {
+        wp_send_json_error('Brakujące parametry.');
+    }
+
+    $query_vars = json_decode(stripslashes($_POST['query']), true);
+    $query_vars['paged'] = intval($_POST['page']);
+    $query_vars['post_status'] = 'publish';
+
+    $products = new \WP_Query($query_vars);
+
+    if ($products->have_posts()) {
+        ob_start();
+        while ($products->have_posts()) {
+            $products->the_post();
+            wc_get_template_part('content', 'product');
+        }
+        $html = ob_get_clean();
+        wp_send_json_success(['html' => $html]);
+    } else {
+        wp_send_json_error('Brak kolejnych produktów.');
+    }
+
+    wp_die();
+}
+
+
+add_action('wp_head', function () {
+    if (!is_shop() && !is_product_category() && !is_product_tag()) {
+        return;
+    }
+
+    global $wp_query;
+
+    $data = [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'query_vars' => json_encode($wp_query->query_vars),
+    ];
+
+    // Tworzymy obiekt window.sage bezpośrednio w tagu <script>
+    $script = 'window.sage = ' . json_encode($data) . ';';
+
+    echo '<script type="text/javascript">' . $script . '</script>';
+}, 20);

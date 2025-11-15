@@ -24,3 +24,10 @@ add_filter('gettext', function ($translated_text, $text, $domain) {
     return $translated_text;
 }, 20, 3);
 
+
+/**
+ * Change number of products displayed per page.
+ */
+add_filter('loop_shop_per_page', function ($cols) {
+    return 18;
+}, 20);
