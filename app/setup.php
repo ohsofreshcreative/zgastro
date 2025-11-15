@@ -699,28 +699,51 @@ add_action('woocommerce_after_calculate_totals', function ($cart) {
         return;
     }
 
+    // Sprawdź, czy dla pierwszego pakietu są dostępne metody wysyłki
     $shipping_packages = WC()->shipping->get_packages();
     $rates = $shipping_packages[0]['rates'] ?? [];
 
+    // Jeśli są dostępne metody wysyłki, nie robimy nic
     if (!empty($rates)) {
         return;
     }
 
     $shipping_class_slug = 'dostawa-lokalna';
-    $restricted_item_in_cart = false;
-    foreach ($cart->get_cart() as $item) {
-        if ($item['data']->get_shipping_class() === $shipping_class_slug) {
-            $restricted_item_in_cart = true;
-            break;
+    $restricted_products = [];
+
+    // Zbierz produkty z ograniczoną klasą wysyłki
+    foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+        if ($cart_item['data']->get_shipping_class() === $shipping_class_slug) {
+            $restricted_products[$cart_item_key] = $cart_item['data'];
         }
     }
 
-    if ($restricted_item_in_cart) {
-        $error_message = 'Niestety, dla produktów w Twoim koszyku nie oferujemy dostawy pod wskazany kod pocztowy. Zmień miejsce dostawy.';
-        if (!wc_has_notice($error_message, 'error')) {
-            wc_add_notice($error_message, 'error');
+    // Jeśli znaleziono produkty z ograniczeniami i nie ma dla nich metod dostawy
+    if (!empty($restricted_products)) {
+        $message = '<p class="mb-2">Niestety, dla wskazanej lokalizacji nie oferujemy dostawy dla następujących produktów:</p>';
+        $message .= '<ul class="list-disc pl-5 mb-4">';
+
+        foreach ($restricted_products as $cart_item_key => $product) {
+            $product_name = $product->get_name();
+            $remove_url = wc_get_cart_remove_url($cart_item_key);
+            $message .= sprintf(
+                '<li>%s <a href="%s" class="remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times; usuń</a></li>',
+                esc_html($product_name),
+                esc_url($remove_url),
+                esc_attr(sprintf('Usuń %s z koszyka', $product_name)),
+                esc_attr($product->get_id()),
+                esc_attr($cart_item_key),
+                esc_attr($product->get_sku())
+            );
+        }
+
+        $message .= '</ul>';
+        $message .= '<p>Aby kontynuować, usuń te produkty z koszyka lub zmień adres dostawy.</p>';
+
+        // Dodaj powiadomienie, jeśli jeszcze nie istnieje
+        if (!wc_has_notice($message, 'error')) {
+            wc_add_notice($message, 'error');
         }
     }
 }, 9999);
-
 
