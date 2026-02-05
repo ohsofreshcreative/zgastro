@@ -19,7 +19,7 @@
     padding: 14px 18px;
     transition: var(--calc-transition);
     border-radius: 12px;
-    font-size: 16px;
+    font-size: 18px;
     font-family: var(--body);
     
     &::placeholder {
@@ -259,7 +259,7 @@
     .service-description {
       font-size: 13px;
       line-height: 1.6;
-      color: var(--gray);
+      color: var(--body);
       margin-top: 8px;
     }
     
@@ -344,7 +344,7 @@
     
     .addon-content {
       font-size: 12px;
-      color: var(--gray);
+      color: var(--body);
       margin-top: 6px;
       line-height: 1.5;
     }
@@ -358,7 +358,7 @@
     color: var(--body);
     margin-top: 12px;
     padding: 12px 16px;
-    background: #FFF !important;
+    background: var(--yellow);
     border-radius: 12px;
 	border: 1px solid var(--yellow);
     border-left: 4px solid var(--yellow);
@@ -465,7 +465,7 @@
           font-size: 36px;
           font-weight: 700;
           color: var(--primary);
-          margin-top: 8px;
+          margin-top: 0px;
 		  line-height: 1em;
         }
       }
@@ -479,7 +479,8 @@
     }
     
     .summary-warnings {
-      margin-top: 0px;
+      margin-top: 16px;
+      margin-bottom: 16px;
       
       .warning-box {
         background: linear-gradient(135deg, #fff5f0 0%, #ffe8dc 100%);

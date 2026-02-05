@@ -31,11 +31,11 @@
           <h4>Liczba osób</h4>
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium mb-2">Dorośli</label>
+              <label class="block text-base font-medium mb-2">Dorośli</label>
               <input type="number" name="guests" min="0" value="15">
             </div>
             <div>
-              <label class="block text-sm font-medium mb-2">Dzieci <span class="text-xs text-gray-500">(porcja {{ $main_dish_child_price ?? 29 }} zł)</span></label>
+              <label class="block text-base font-medium mb-2">Dzieci <span class="text-xs text-gray-500">(porcja {{ $main_dish_child_price ?? 29 }} zł)</span></label>
               <input type="number" name="children" min="0" value="0">
             </div>
           </div>
@@ -77,7 +77,7 @@
           
           @if($meats)
           <div class="mb-6">
-            <p class="font-semibold mb-3 text-gray-700">Wybierz mięso/rybę/wege:</p>
+            <p class="text-xl font-semibold mb-3 text-gray-700">Wybierz mięso/rybę/wege:</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               @foreach($meats as $meat)
               <label class="choice-tile">
@@ -95,7 +95,7 @@
 
           @if($sides)
           <div class="mt-4 mb-4">
-            <p class="font-semibold mb-3 text-gray-700">Wybierz dodatek skrobiowy:</p>
+            <p class="text-xl font-semibold mb-3 text-gray-700">Wybierz dodatek skrobiowy:</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               @foreach($sides as $side)
               <label class="choice-tile">
@@ -109,7 +109,7 @@
 
           @if($vegetables)
           <div class="mb-4">
-            <p class="font-semibold mb-3 text-gray-700">Wybierz surówkę/warzywa:</p>
+            <p class="text-xl font-semibold mb-3 text-gray-700">Wybierz surówkę/warzywa:</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               @foreach($vegetables as $veg)
               <label class="choice-tile">
@@ -178,7 +178,7 @@
         <div class="mb-8">
           <h4>Sposób serwowania</h4>
           
-          <div class="space-y-3">
+          <div class="flex flex-col gap-4">
             <!-- Bufet -->
             <label class="service-card">
               <div class="flex items-start gap-3">
@@ -276,7 +276,7 @@
         <div class="mb-8">
           <h4>Dodatki</h4>
           
-          <div class="space-y-3">
+          <div class="flex flex-col gap-4">
             <label class="addon-card">
               <div class="flex items-start gap-3">
                 <input type="checkbox" name="coffee_buffet">
