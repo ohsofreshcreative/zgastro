@@ -28,7 +28,7 @@ $sectionClass .= !empty($brandbg) ? ' section-brand' : '';
 			<div data-gsap-element="card">
 				<div class="__card relative h-full b-shadow p-8 rounded-xl bg-white pt-48" style="background:linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.90) 75%), url({{ $item['image']['url'] }}); background-size: cover; background-position: center;">
 					<div>
-						<h4 class="text-yellow">{{ $item['title'] }}</h4>
+						<h5 class="text-yellow">{{ $item['title'] }}</h5>
 						<div class="text-lg text-white">{!! $item['txt'] !!}</div>
 					</div>
 				</div>
