@@ -24,6 +24,7 @@
 @import '../css/blocks/cases-slider.scss';
 @import '../css/blocks/contact.scss';
 @import '../css/blocks/categories.scss';
+@import '../css/blocks/twocolumns.scss';
 
 @import 'swiper/css';
 @import 'swiper/css/navigation';

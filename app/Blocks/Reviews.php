@@ -46,7 +46,7 @@ class Reviews extends Block
 			])
 			->addText('title', ['label' => 'Tytuł'])
 			->addText('txt', ['label' => 'Opis'])
-
+			->addText('number', ['label' => 'Liczba opinii na Google'])
 			->addRepeater('repeater', [
 				'label' => 'Slider - Opinie',
 				'layout' => 'table', // 'row', 'block', albo 'table'

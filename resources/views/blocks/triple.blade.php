@@ -10,6 +10,8 @@ $sectionClass .= !empty($whitebg) ? ' section-white' : '';
 $sectionClass .= !empty($brandbg) ? ' section-brand' : '';
 @endphp
 
+<!--- triple --->
+
 <section data-gsap-anim="section" @if(!empty($id)) id="{{ $id }}" @endif class="triple -smt {{ $sectionClass }} {{ $class ?? '' }}">
 	<div class="__wrapper c-main">
 

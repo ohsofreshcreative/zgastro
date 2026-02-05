@@ -44,7 +44,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 						</div>
 
 						@if(!empty($card['card_txt']))
-						<div class="__txt">{{ $card['card_txt'] }}</div>
+						<div class="__txt">{!! $card['card_txt'] !!}</div>
 						@endif
 
 						@if(!empty($card['card_name']))
@@ -64,7 +64,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 
 			<div data-gsap-element="google" class="text-right pt-8 ml-auto">
 				<img class="ml-auto" src="/wp-content/uploads/2025/08/google.svg" />
-				<p>45 opinii Google<br /><a class="!underline" href="https://www.google.com/search?sa=X&sca_esv=80f6c8a4b1eab6de&tbm=lcl&sxsrf=AE3TifONeYGA8zqd-uvpdt8h7pQoUo3sCQ:1756634002049&q=Zak%C5%82ad+Gastronomiczny+-+Catering+-+Wyroby+Garma%C5%BCeryjne+Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDI0NjA1NTMzNjWxMDEyNrY0MNnAyPiK0T4qMftoU2KKgnticUlRfl5-bmZyVV6lgq6Cc2JJalFmXjqQGV5ZlJ9UCVRSlJt4dE9qUWVWXqqCf0FmXmbqIlZKTQAAyfEtEZ8AAAA&rldimm=12130556635484233904&hl=pl-PL&ved=2ahUKEwjM48TN47SPAxUyPRAIHT76OnsQ9fQKegQIMRAF&biw=1792&bih=903&dpr=2#lkt=LocalPoiReviews" target="_blank" rel="noopener">Sprawdź wszystkie</a></p>
+				<p>{{ $g_reviews['number'] }} opinii Google<br /><a class="!underline" href="https://www.google.com/search?sa=X&sca_esv=80f6c8a4b1eab6de&tbm=lcl&sxsrf=AE3TifONeYGA8zqd-uvpdt8h7pQoUo3sCQ:1756634002049&q=Zak%C5%82ad+Gastronomiczny+-+Catering+-+Wyroby+Garma%C5%BCeryjne+Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDI0NjA1NTMzNjWxMDEyNrY0MNnAyPiK0T4qMftoU2KKgnticUlRfl5-bmZyVV6lgq6Cc2JJalFmXjqQGV5ZlJ9UCVRSlJt4dE9qUWVWXqqCf0FmXmbqIlZKTQAAyfEtEZ8AAAA&rldimm=12130556635484233904&hl=pl-PL&ved=2ahUKEwjM48TN47SPAxUyPRAIHT76OnsQ9fQKegQIMRAF&biw=1792&bih=903&dpr=2#lkt=LocalPoiReviews" target="_blank" rel="noopener">Sprawdź wszystkie</a></p>
 			</div>
 		</div>
 	</div>
