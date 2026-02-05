@@ -192,6 +192,13 @@ body {
 	:focus-visible {
 		outline: none !important;
 	}
+
+	 --calc-card-radius: 16px;
+  --calc-border: var(--border-p-light);
+  --calc-border-active: var(--primary);
+  --calc-shadow: 0 2px 8px rgba(246, 90, 50, 0.08);
+  --calc-shadow-hover: 0 4px 16px rgba(246, 90, 50, 0.12);
+  --calc-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /*--- !CONTAINERS ---*/
