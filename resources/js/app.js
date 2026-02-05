@@ -6,6 +6,7 @@ import './footer-accordion.js';
 import './swiper.js';
 import { initWooCommerceLoadMore } from './load-more.js';
 
+import './blocks/calc.js';
 
 /*--- BLOCKS ---*/
 Object.values(
