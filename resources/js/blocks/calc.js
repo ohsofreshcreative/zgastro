@@ -119,12 +119,12 @@ const initializeCateringCalculator = () => {
     const selectedAppetizers = Array.from(appetizerCheckboxes).filter(cb => cb.checked);
     if (selectedAppetizers.length > 0) {
       const requiredPlatters = Math.ceil(totalPeople / 15);
-      if (selectedAppetizers.length === 8) {
+      if (selectedAppetizers.length === 6) {
         totalCost += totalPeople * prices.appetizer;
         summary.appetizers.innerHTML = `${selectedAppetizers.length} półmisków (${requiredPlatters} wymagane dla ${totalPeople} osób)<br>${selectedAppetizers.map(cb => cb.value).join(', ')}`;
       } else {
-        warnings.push(`Zakąski: wybierz dokładnie 8 półmisków (obecnie wybrano ${selectedAppetizers.length})`);
-        summary.appetizers.innerHTML = `<span class="text-orange-600">Wybrano ${selectedAppetizers.length}/8 półmisków</span>`;
+        warnings.push(`Zakąski: wybierz dokładnie 6 półmisków (obecnie wybrano ${selectedAppetizers.length})`);
+        summary.appetizers.innerHTML = `<span class="text-orange-600">Wybrano ${selectedAppetizers.length}/6 półmisków</span>`;
       }
     } else {
       summary.appetizers.innerHTML = '<span class="empty">Brak</span>';
@@ -244,14 +244,14 @@ const initializeCateringCalculator = () => {
     });
   });
 
-  // Limit i licznik wyborów zakąsek (8 z 16)
+  // Limit i licznik wyborów zakąsek (6 z 16)
   appetizerCheckboxes.forEach(cb => {
     cb.addEventListener('change', () => {
       const checkedCount = Array.from(appetizerCheckboxes).filter(c => c.checked).length;
       if (appetizerCounter) {
-        appetizerCounter.innerHTML = `Wybrano: <span class="counter-value">${checkedCount}/8</span>`;
+        appetizerCounter.innerHTML = `Wybrano: <span class="counter-value">${checkedCount}/6</span>`;
       }
-      if (checkedCount >= 8) {
+      if (checkedCount >= 6) {
         appetizerCheckboxes.forEach(c => {
           if (!c.checked) c.disabled = true;
         });

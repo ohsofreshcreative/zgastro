@@ -128,7 +128,7 @@
         @if($appetizers)
         <div class="mb-8">
           <h4>Zakąski ({{ $appetizer_price ?? 110 }} zł/os.)</h4>
-          <div class="warning">{{ $appetizer_rule ?? '1 półmisek na każde 15 osób' }} | Wybierz dokładnie 8 półmisków z 16 dostępnych</div>
+          <div class="warning">{{ $appetizer_rule ?? '1 półmisek na każde 15 osób' }} | Wybierz dokładnie 6 półmisków z 16 dostępnych</div>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             @foreach($appetizers as $appetizer)
@@ -139,7 +139,7 @@
             @endforeach
           </div>
           
-          <div class="counter" id="appetizer-counter">Wybrano: <span class="counter-value">0/8</span></div>
+          <div class="counter" id="appetizer-counter">Wybrano: <span class="counter-value">0/6</span></div>
 
           @if($appetizer_hint)
           <div class="hint">{{ $appetizer_hint }}</div>
@@ -413,7 +413,7 @@
       appetizerCheckboxes.forEach(cb => {
         cb.addEventListener('change', () => {
           const count = Array.from(appetizerCheckboxes).filter(c => c.checked).length;
-          appetizerCounter.innerHTML = `Wybrano: <span class="counter-value">${count}/8</span>`;
+          appetizerCounter.innerHTML = `Wybrano: <span class="counter-value">${count}/6</span>`;
         });
       });
     }
