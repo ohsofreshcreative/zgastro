@@ -35,7 +35,7 @@ add_filter('loop_shop_per_page', function ($cols) {
 /**
  * Czyści HTML.
  */
-function iwaniczek_clean_html($value)
+function clean_html($value)
 {
     if (! is_string($value) || trim($value) === '') {
         return $value;
@@ -73,7 +73,7 @@ function iwaniczek_clean_html($value)
  * ACF WYSIWYG
  */
 add_filter('acf/update_value/type=wysiwyg', function ($value) {
-    return iwaniczek_clean_html($value);
+    return clean_html($value);
 });
 
 /**
@@ -85,8 +85,8 @@ add_filter('wp_insert_post_data', function ($data) {
         return $data;
     }
 
-    $data['post_content'] = iwaniczek_clean_html($data['post_content'] ?? '');
-    $data['post_excerpt'] = iwaniczek_clean_html($data['post_excerpt'] ?? '');
+    $data['post_content'] = clean_html($data['post_content'] ?? '');
+    $data['post_excerpt'] = clean_html($data['post_excerpt'] ?? '');
 
     return $data;
 
