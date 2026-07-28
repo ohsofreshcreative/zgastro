@@ -32,9 +32,12 @@ add_filter('loop_shop_per_page', function ($cols) {
     return 18;
 }, 20);
 
-
-add_filter('acf/update_value/type=wysiwyg', function ($value, $postId, $field) {
-    if (! is_string($value) || $value === '') {
+/**
+ * Czyści HTML.
+ */
+function iwaniczek_clean_html($value)
+{
+    if (! is_string($value) || trim($value) === '') {
         return $value;
     }
 
@@ -64,4 +67,27 @@ add_filter('acf/update_value/type=wysiwyg', function ($value, $postId, $field) {
     ];
 
     return wp_kses($value, $allowedHtml);
-}, 10, 3);
+}
+
+/**
+ * ACF WYSIWYG
+ */
+add_filter('acf/update_value/type=wysiwyg', function ($value) {
+    return iwaniczek_clean_html($value);
+});
+
+/**
+ * WooCommerce - długi i krótki opis produktu.
+ */
+add_filter('wp_insert_post_data', function ($data) {
+
+    if (($data['post_type'] ?? '') !== 'product') {
+        return $data;
+    }
+
+    $data['post_content'] = iwaniczek_clean_html($data['post_content'] ?? '');
+    $data['post_excerpt'] = iwaniczek_clean_html($data['post_excerpt'] ?? '');
+
+    return $data;
+
+}, 10, 2);
